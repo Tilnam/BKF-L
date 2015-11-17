@@ -1,0 +1,50 @@
+\documentclass[12pt,a4paper]{article}
+%\input{glava}
+\usepackage{tikz}
+
+\begin{document}
+
+\usetikzlibrary{circuits.ee}
+\usetikzlibrary{circuits.ee.IEC}
+
+\newif\ifreversepolarity
+\tikzoption{reversepolarity}[true]{\reversepolaritytrue}
+
+
+\tikzset{circuit declare symbol = var battery}
+\tikzset{set var battery graphic = var battery IEC graphic}
+\tikzset{var battery IEC graphic/.style=
+  {transform shape, circuit symbol lines, circuit symbol size = width
+2.5 height 2.5,
+   shape=generic circle IEC, /pgf/generic circle IEC/before
+background=
+    {
+     \pgfpathcircle{\pgfpoint{0.45pt}{0pt}}{0.1pt}
+     \pgfpathcircle{\pgfpoint{-0.45pt}{0pt}}{0.1pt}
+     \pgfpathmoveto{\pgfpoint{-1.0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-0.6pt}{0pt}}
+     \pgfpathmoveto{\pgfpoint{1.0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.6pt}{0pt}}
+     \pgfusepathqstroke
+     % PLUS AND MINUS SYMBOL
+     \pgfgettransform\savedtransform
+     \pgftransformshift{\pgfpoint{0.45pt}{0.45pt}}
+     \pgftransformresetnontranslations
+     \pgftransformscale{0.075\tikzcircuitssizeunit}
+     \pgftext{\bf{\ifreversepolarity$-$\else$+$\fi}}
+     \pgfsettransform\savedtransform
+     \pgftransformshift{\pgfpoint{-0.45pt}{0.45pt}}
+     \pgftransformresetnontranslations
+     \pgftransformscale{0.075\tikzcircuitssizeunit}
+     \pgftext{\bf{\ifreversepolarity$+$\else$-$\fi}}
+     \pgfsettransform\savedtransform
+     }}}
+
+\begin{tikzpicture}[circuit ee IEC,semithick,x=1cm,y=1cm]
+\draw (0,0) to [capacitor] (3,0)
+to [resistor] (3,2)
+to [var battery,reversepolarity,tiny circuit symbols] (0,2)
+to [var battery={info'={$U_3$}},huge circuit symbols] (0,0);
+\end{tikzpicture}
+
+\end{document} 

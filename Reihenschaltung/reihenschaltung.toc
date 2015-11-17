@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Messaufgabe}{2}{section.1}
+\contentsline {section}{\numberline {2}Stromabh\IeC {\"a}ngigkeit}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Messschaltung zur Bestimmung der Str\IeC {\"o}me zwischen den Bauteilen}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Aufbau der Schaltung}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Messwerte und Zusammenh\IeC {\"a}nge}{3}{subsection.2.3}
+\contentsline {section}{\numberline {3}Spannungsabh\IeC {\"a}ngigkeit}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Messschaltung zur Messung der Spannung \IeC {\"u}ber die einzelnen Bauteile}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Aufbau der Schaltung}{3}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Messwerte und Zusammenh\IeC {\"a}nge}{3}{subsection.3.3}
+\contentsline {section}{\numberline {4}Erkenntnisse}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}Wie verhalten sich die Str\IeC {\"o}me bei einer Reihenschaltung}{4}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Beziehung zwischen der Generatorspannung und den gemessenen Spannungen}{4}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Gesamtwiderstand und Beziehung der einzelnen Widerstandswerte zum Gesamtwiderstand}{4}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Abh\IeC {\"a}ngigkeiten}{4}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Einzelspannungen und Widerst\IeC {\"a}nde}{4}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}Einzelspannungen und Str\IeC {\"o}me}{4}{subsubsection.4.4.2}
+\contentsline {section}{\numberline {5}Zusatzaufgabe}{4}{section.5}
