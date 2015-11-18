@@ -85,6 +85,8 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 \tikzset{set ammeter graphic ={draw,generic circle IEC, minimum size=5mm,info=center:A}}
 \tikzset{circuit declare symbol = voltmeter}
 \tikzset{set voltmeter graphic ={draw,generic circle IEC, minimum size=5mm,info=center:V}}
+\tikzset{circuit declare symbol = generator}
+\tikzset{set generator graphic ={draw,rectangle ee, minimum size=5mm,info=center:G}}
 % Spannungs und Strompfeile
 \tikzset{
   Pfeil/.style={thick,shorten >=#1,shorten <=#1,->}, % für Peile
@@ -200,12 +202,10 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 % \titlehead{} %% special heading for the titlepage
 
 %%% title
-\title{Reihenschaltung}
+\title{Messbericht Reihenschaltung}
 
 %%% author(s)
-\author{Felix Schiller \and
-Sebastian Littau        \and
-E1FS2}
+\author{Felix Schiller \\ Sebastian Littau \\ E1FS2}
 
 %%% date
 \date{Reutlingen, am \today{}}
@@ -245,10 +245,10 @@ E1FS2}
 %%% \position[heading/footer for the titlepage]{heading/footer for the rest of the document}
 
 %%% heading - left
-\ihead[]{Schiller, Felix; Littau, Sebastian}
+\ihead[]{Schiller, Felix \\ Littau, Sebastian}
 
 %%% heading - center
-\chead[]{Reihenschaltung}
+\chead[]{Messbericht \\Reihenschaltung}
 
 %%% heading - right
 \ohead[]{\thepage}
@@ -302,8 +302,10 @@ E1FS2}
 \section{Messaufgabe}
 An einer Reihenschaltung von 4 Widerständen soll durch Messung ermittelt werden, wie sich 
 \begin{enumerate}
+\begin{enumerate}
 	\item die Ströme zwischen den einzelnen Bauteilen und 
 	\item die Spannungen an den einzelnen Bauteilen verhalten. 
+\end{enumerate}
 \end{enumerate}
 Die messtechnisch gewonnenen Ergebnisse sind so zu verallgemeinern, dass sie auf beliebige Widerstandsreihenschaltungen anwendbar sind. \\
 Mit den gewonnenen Erkenntnissen ist die zu Beginn gestellte Problemstellung zu bearbeiten.
@@ -311,7 +313,67 @@ Mit den gewonnenen Erkenntnissen ist die zu Beginn gestellte Problemstellung zu 
 \section{Stromabhängigkeit}
 \subsection{Messschaltung zur Bestimmung der Ströme zwischen den Bauteilen}
 
-\textbf{Schaltplan einfügen}
+\begin{center}
+\begin{tikzpicture}[%show background rectangle,
+circuit ee IEC, circuit symbol lines/.style={draw,thick},
+font=\sffamily\upshape,
+>=latex % Voreinstellung für Pfeilspitzen
+]
+\matrix (S) [
+  matrix of nodes, nodes in empty cells,
+  inner sep=0pt, outer sep=-.5\pgflinewidth,
+  column sep=15mm, row sep = 7mm,
+  nodes={minimum width=0pt}
+  ]
+{
+  &&&&&&  \\
+  &&&&&&  \\
+  &&&&&&  \\
+};
+ 
+ 
+%Orientierungshilfen
+%\foreach \j in {1,...,3}
+% \foreach \k in {1,...,7}{%
+%\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
+%\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
+%\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
+%};%
+ 
+
+%Bauteile
+\draw (S-3-1) to  [generator=adjustable'](S-1-1);
+\draw (S-1-3) to  [resistor={info=R$_\mathsf{1}$, name=Wstd}](S-1-4);
+\draw (S-1-2) to  [ammeter ={name=AM1}](S-1-3);
+\draw (S-1-5) to  [resistor={info=R$_\mathsf{2}$, name=Wstd}](S-1-6);
+\draw (S-1-4) to  [ammeter ={name=AM2}](S-1-5);
+\draw (S-3-5) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-3-6);
+\draw (S-3-6) to  [ammeter ={name=AM3}](S-3-7);
+\draw (S-3-3) to  [resistor={info=R$_\mathsf{4}$, name=Wstd}](S-3-4);
+\draw (S-3-4) to  [ammeter ={name=AM4}](S-3-5);
+\draw (S-3-2) to  [ammeter ={name=AMg}](S-3-3);
+
+%Spannungspfeile
+%Spannungspfeil der Quelle / des Voltmeters
+\draw[UPfeil=0.25em] ([xshift=6mm]S-1-1.east) -- ([xshift=6mm]S-3-1.east) node[midway, right]{U$\mathsf{_{G}}$};
+
+%Strompfeile
+\draw[IPfeil=-1em]([yshift=.5em]AM1.north west) -- node [above]{I$\mathsf{_1}$}([yshift=.5em]AM1.north east);
+\draw[IPfeil=-1em]([yshift=.5em]AM2.north west) -- node [above]{I$\mathsf{_2}$}([yshift=.5em]AM2.north east); 
+\draw[IPfeil=-1em]([yshift=-.5em]AM3.south east) -- node [below]{I$\mathsf{_3}$}([yshift=-.5em]AM3.south west); 
+\draw[IPfeil=-1em]([yshift=-.5em]AM4.south east) -- node [below]{I$\mathsf{_4}$}([yshift=-.5em]AM4.south west);
+\draw[IPfeil=-1em]([yshift=-.5em]AMg.south east) -- node [below]{I$\mathsf{_G}$}([yshift=-.5em]AMg.south west);
+ 
+%Leiterbahnen
+\draw (S-1-1) -- (S-1-2);
+\draw (S-1-6) -- (S-1-7);
+\draw (S-1-7) -- (S-3-7);
+\draw (S-3-1) -- (S-3-2);
+ 
+ 
+ 
+\end{tikzpicture}
+\end{center}
 
 \subsection{Aufbau der Schaltung}
 
@@ -333,7 +395,75 @@ Der Strom ist in allen Widerständen gleich groß. Oder Allgemeiner ausgedrückt
 \section{Spannungsabhängigkeit}
 \subsection{Messschaltung zur Messung der Spannung über die einzelnen Bauteile}
 
-\textbf{Schaltplan einfügen}
+\begin{center}
+\begin{tikzpicture}[%show background rectangle,
+circuit ee IEC, circuit symbol lines/.style={draw,thick},
+font=\sffamily\upshape,
+>=latex % Voreinstellung für Pfeilspitzen
+]
+\matrix (S) [
+  matrix of nodes, nodes in empty cells,
+  inner sep=0pt, outer sep=-.5\pgflinewidth,
+  column sep=15mm, row sep = 7mm,
+  nodes={minimum width=0pt}
+  ]
+{
+  &&&&  \\
+  &&&&  \\
+  &&&&  \\
+  &&&&  \\
+  &&&&  \\
+};
+ 
+ 
+%Orientierungshilfen
+%\foreach \j in {1,...,5}
+% \foreach \k in {1,...,5}{%
+%\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
+%\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
+%\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
+%};%
+ 
+
+%Bauteile
+\draw (S-4-1) to  [generator={adjustable', name=ug}](S-2-1);
+\draw (S-2-2) to  [resistor={info'=R$_\mathsf{1}$, name=Wstd}](S-2-3);
+\draw (S-1-2) to  [voltmeter ={name=VM1}](S-1-3);
+\draw (S-2-4) to  [resistor={info'=R$_\mathsf{2}$, name=Wstd}](S-2-5);
+\draw (S-1-4) to  [voltmeter ={name=VM2}](S-1-5);
+\draw (S-4-4) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-4-5);
+\draw (S-5-4) to  [voltmeter ={name=VM3}](S-5-5);
+\draw (S-4-2) to  [resistor={info=R$_\mathsf{4}$, name=Wstd}](S-4-3);
+\draw (S-5-2) to  [voltmeter ={name=VM4}](S-5-3);
+
+%Spannungspfeile
+%Spannungspfeil der Quelle / des Voltmeters
+\draw[UPfeil=0.25em] ([xshift=6mm]S-2-1.east) -- ([xshift=6mm]S-4-1.east) node[midway, right]{U$\mathsf{_{G}}$};
+
+\draw[UPfeil=-1em]([yshift=.5em]VM1.north west) -- node [above]{U$\mathsf{_1}$}([yshift=.5em]VM1.north east);
+\draw[UPfeil=-1em]([yshift=.5em]VM2.north west) -- node [above]{U$\mathsf{_2}$}([yshift=.5em]VM2.north east);
+\draw[UPfeil=-1em]([yshift=-.5em]VM3.south east) -- node [below]{U$\mathsf{_3}$}([yshift=-.5em]VM3.south west);
+\draw[UPfeil=-1em]([yshift=-.5em]VM4.south east) -- node [below]{U$\mathsf{_4}$}([yshift=-.5em]VM4.south west);
+ 
+%Leiterbahnen
+\draw (S-2-1) -- (S-2-2);
+\draw (S-1-2) -- (S-2-2);
+\draw (S-1-3) -- (S-2-3);
+\draw (S-1-4) -- (S-2-4);
+\draw (S-1-5) -- (S-2-5);
+\draw (S-4-2) -- (S-5-2);
+\draw (S-4-3) -- (S-5-3);
+\draw (S-4-4) -- (S-5-4);
+\draw (S-4-5) -- (S-5-5);
+\draw (S-2-5) -- (S-4-5);
+\draw (S-2-3) -- (S-2-4);
+\draw (S-4-3) -- (S-4-4);
+\draw (S-4-1) -- (S-4-2);
+ 
+ 
+ 
+\end{tikzpicture}
+\end{center}
 
 \subsection{Aufbau der Schaltung}
 
@@ -431,12 +561,9 @@ font=\sffamily\upshape,
 \draw (S-1-1) -- (S-1-3);
 \draw (S-4-1) -- (S-5-1);
 \draw (S-5-1) -- (S-5-3); 
- 
- 
- 
+
 \end{tikzpicture}
 \end{center}
-
 Widerstand der LED im Betrieb
 \[R_{LED}=\frac{U_{LED}}{I_{LED}}=\frac{2V}{20mA}=100\Omega\]
 Ein Vorwiderstand wird mit der LED in Reihe geschalten, also addieren sich Der Vorwiderstand und der Widerstand der LED zum Gesamtwiderstand der Schaltung. 
