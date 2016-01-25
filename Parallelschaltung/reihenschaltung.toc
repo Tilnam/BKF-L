@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Messaufgabe}{2}{section.1}
+\contentsline {section}{\numberline {2}Messung}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Stromabh\IeC {\"a}ngigkeit}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Messschaltung zur Bestimmung der Str\IeC {\"o}me zwischen den Bauteilen}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Aufbau der Schaltung}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Messwerte und Zusammenh\IeC {\"a}nge}{3}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Spannungsabh\IeC {\"a}ngigkeit}{4}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Messschaltung zur Messung der Spannung \IeC {\"u}ber die einzelnen Bauteile}{4}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Aufbau der Schaltung}{4}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.8}Messwerte und Zusammenh\IeC {\"a}nge}{4}{subsection.2.8}
+\contentsline {section}{\numberline {3}Erkenntnisse}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Wie verhalten sich die Str\IeC {\"o}me bei einer Parallelschaltung?}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Beziehung zwischen der Generatorspannung und den gemessenen Spannungen}{5}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Gesamtwiderstand und Beziehung der einzelnen Widerstandswerte zum Gesamtwiderstand}{5}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Mathematische Herleitung}{5}{subsection.3.4}
+\contentsline {section}{\numberline {4}Anwenderschaltung}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Schaltung}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Berechnung des Parallelwiderstands}{7}{subsection.4.2}

@@ -6,7 +6,7 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 % landscape,   %% sets the orientation to landscape
 % twoside,     %% changes to a two-page-layout (alternatively: oneside)
 % twocolumn,   %% changes to a two-column-layout
-% headsepline, %% add a horizontal line below the column title
+ headsepline, %% add a horizontal line below the column title
 % footsepline, %% add a horizontal line above the page footer
 % titlepage,   %% only the titlepage (using titlepage-environment) appears on the first page (alternatively: notitlepage)
 % parskip,     %% insert an empty line between two paragraphs (alternatively: halfparskip, ...)
@@ -15,8 +15,8 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 % tablecaptionabove, %% captions of tables are above the tables (alternatively: tablecaptionbelow)
 % draft,       %% produce only a draft version (mark lines that need manual edition and don't show graphics)
 % 10pt         %% set default font size to 10 point
-% 11pt         %% set default font size to 11 point
-12pt         %% set default font size to 12 point
+11pt         %% set default font size to 11 point
+% 12pt         %% set default font size to 12 point
 ]{scrartcl}  %% article, see KOMA documentation (scrguide.dvi)
 
 
@@ -94,6 +94,28 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
   IPfeil/.style={red,Pfeil=#1,font={\ttfamily\itshape}} % für Strompfeile
 }
 
+
+%Boxen
+\usepackage{empheq}
+ 
+% Command "alignedbox{}{}" for a box within an align environment
+% Source: http://www.latex-community.org/forum/viewtopic.php?f=46&t=8144
+\newlength\dlf  % Define a new measure, dlf
+\newcommand\alignedbox[2]{
+% Argument #1 = before & if there were no box (lhs)
+% Argument #2 = after & if there were no box (rhs)
+&  % Alignment sign of the line
+{
+\settowidth\dlf{$\displaystyle #1$}  
+    % The width of \dlf is the width of the lhs, with a displaystyle font
+\addtolength\dlf{\fboxsep+\fboxrule}  
+    % Add to it the distance to the box, and the width of the line of the box
+\hspace{-\dlf}  
+    % Move everything dlf units to the left, so that & #1 #2 is aligned under #1 & #2
+\boxed{#1 #2}
+    % Put a box around lhs and rhs
+}
+}
 
 %%%
 %%% layout
@@ -202,7 +224,7 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 % \titlehead{} %% special heading for the titlepage
 
 %%% title
-\title{Messbericht Reihenschaltung}
+\title{Messbericht Parallelschaltung}
 
 %%% author(s)
 \author{Felix Schiller \\ Sebastian Littau \\ E1FS2}
@@ -248,7 +270,7 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 \ihead[]{Schiller, Felix \\ Littau, Sebastian}
 
 %%% heading - center
-\chead[]{Messbericht \\Reihenschaltung}
+\chead[]{Messbericht \\Parallelschaltung}
 
 %%% heading - right
 \ohead[]{\thepage}
@@ -300,17 +322,15 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 %%% structure: \section \subsection \subsubsection \paragraph \subparagraph
 %%%
 \section{Messaufgabe}
-An einer Reihenschaltung von 4 Widerständen soll durch Messung ermittelt werden, wie sich 
-\begin{enumerate}
+An einer Parallelschaltung von 4 Widerständen soll durch Messung ermittelt werden, wie sich 
 \begin{enumerate}
 	\item die Ströme zwischen den einzelnen Bauteilen und 
 	\item die Spannungen an den einzelnen Bauteilen verhalten. 
 \end{enumerate}
-\end{enumerate}
-Die messtechnisch gewonnenen Ergebnisse sind so zu verallgemeinern, dass sie auf beliebige Widerstandsreihenschaltungen anwendbar sind. \\
-Mit den gewonnenen Erkenntnissen ist die zu Beginn gestellte Problemstellung zu bearbeiten.
+Die messtechnisch gewonnenen Ergebnisse sind so zu verallgemeinern, dass sie auf beliebige Parallelschaltungen anwendbar sind.
 
-\section{Stromabhängigkeit}
+\section{Messung}
+\subsection{Stromabhängigkeit}
 \subsection{Messschaltung zur Bestimmung der Ströme zwischen den Bauteilen}
 
 \begin{center}
@@ -326,15 +346,18 @@ font=\sffamily\upshape,
   nodes={minimum width=0pt}
   ]
 {
-  &&&&&&  \\
-  &&&&&&  \\
-  &&&&&&  \\
+  &&&&&&&&  \\
+  &&&&&&&&  \\
+  &&&&&&&&  \\
+  &&&&&&&&  \\
+  &&&&&&&&  \\
+  &&&&&&&&  \\
 };
  
  
 %Orientierungshilfen
-%\foreach \j in {1,...,3}
-% \foreach \k in {1,...,7}{%
+%\foreach \j in {1,...,6}
+% \foreach \k in {1,...,9}{%
 %\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
 %\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
 %\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
@@ -342,34 +365,62 @@ font=\sffamily\upshape,
  
 
 %Bauteile
-\draw (S-3-1) to  [generator=adjustable'](S-1-1);
-\draw (S-1-3) to  [resistor={info=R$_\mathsf{1}$, name=Wstd}](S-1-4);
-\draw (S-1-2) to  [ammeter ={name=AM1}](S-1-3);
-\draw (S-1-5) to  [resistor={info=R$_\mathsf{2}$, name=Wstd}](S-1-6);
-\draw (S-1-4) to  [ammeter ={name=AM2}](S-1-5);
-\draw (S-3-5) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-3-6);
-\draw (S-3-6) to  [ammeter ={name=AM3}](S-3-7);
-\draw (S-3-3) to  [resistor={info=R$_\mathsf{4}$, name=Wstd}](S-3-4);
-\draw (S-3-4) to  [ammeter ={name=AM4}](S-3-5);
-\draw (S-3-2) to  [ammeter ={name=AMg}](S-3-3);
+\draw (S-4-1) to  [generator={adjustable', name=Gen}](S-2-1);
+
+\draw (S-2-3) to  [resistor={info=R$_\mathsf{1}$, name=Wstd}](S-4-3);
+\draw (S-4-3) to  [ammeter ={name=AM1}](S-6-3);
+%\draw (S-2-2) to  [voltmeter ={name=VM1}](S-4-2);
+
+\draw (S-2-5) to  [resistor={info=R$_\mathsf{2}$, name=Wstd}](S-4-5);
+\draw (S-4-5) to  [ammeter ={name=AM2}](S-6-5);
+%\draw (S-2-4) to  [voltmeter ={name=VM2}](S-4-4);
+
+\draw (S-2-7) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-4-7);
+\draw (S-4-7) to  [ammeter ={name=AM3}](S-6-7);
+%\draw (S-2-6) to  [voltmeter ={name=VM3}](S-4-6);
+
+\draw (S-2-9) to  [resistor={info=R$_\mathsf{4}$, name=Wstd}](S-4-9);
+\draw (S-4-9) to  [ammeter ={name=AM4}](S-6-9);
+%\draw (S-2-8) to  [voltmeter ={name=VM4}](S-4-8);
+
+\draw (S-1-1) to  [ammeter ={name=AMg}](S-1-2);
 
 %Spannungspfeile
 %Spannungspfeil der Quelle / des Voltmeters
-\draw[UPfeil=0.25em] ([xshift=6mm]S-1-1.east) -- ([xshift=6mm]S-3-1.east) node[midway, right]{U$\mathsf{_{G}}$};
+\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_G}$}([xshift=-.5em]Gen.south west);
+%\draw[UPfeil=-1em]([xshift=.5em]VM1.north east) -- node [right]{U$\mathsf{_1}$}([xshift=.5em]VM1.south east);
+%\draw[UPfeil=-1em]([xshift=.5em]VM2.north east) -- node [right]{U$\mathsf{_2}$}([xshift=.5em]VM2.south east);
+%\draw[UPfeil=-1em]([xshift=.5em]VM3.north east) -- node [right]{U$\mathsf{_3}$}([xshift=.5em]VM3.south east);
+%\draw[UPfeil=-1em]([xshift=.5em]VM4.north east) -- node [right]{U$\mathsf{_4}$}([xshift=.5em]VM4.south east);
 
 %Strompfeile
-\draw[IPfeil=-1em]([yshift=.5em]AM1.north west) -- node [above]{I$\mathsf{_1}$}([yshift=.5em]AM1.north east);
-\draw[IPfeil=-1em]([yshift=.5em]AM2.north west) -- node [above]{I$\mathsf{_2}$}([yshift=.5em]AM2.north east); 
-\draw[IPfeil=-1em]([yshift=-.5em]AM3.south east) -- node [below]{I$\mathsf{_3}$}([yshift=-.5em]AM3.south west); 
-\draw[IPfeil=-1em]([yshift=-.5em]AM4.south east) -- node [below]{I$\mathsf{_4}$}([yshift=-.5em]AM4.south west);
-\draw[IPfeil=-1em]([yshift=-.5em]AMg.south east) -- node [below]{I$\mathsf{_G}$}([yshift=-.5em]AMg.south west);
+\draw[IPfeil=-1em]([xshift=-.5em]AM1.north west) -- node [left]{I$\mathsf{_1}$}([xshift=-.5em]AM1.south west);
+\draw[IPfeil=-1em]([xshift=-.5em]AM2.north west) -- node [left]{I$\mathsf{_2}$}([xshift=-.5em]AM2.south west); 
+\draw[IPfeil=-1em]([xshift=-.5em]AM3.north west) -- node [left]{I$\mathsf{_3}$}([xshift=-.5em]AM3.south west); 
+\draw[IPfeil=-1em]([xshift=-.5em]AM4.north west) -- node [left]{I$\mathsf{_4}$}([xshift=-.5em]AM4.south west);
+\draw[IPfeil=-1em]([yshift=.5em]AMg.north west) -- node [above]{I$\mathsf{_G}$}([yshift=.5em]AMg.north east);
  
 %Leiterbahnen
-\draw (S-1-1) -- (S-1-2);
-\draw (S-1-6) -- (S-1-7);
-\draw (S-1-7) -- (S-3-7);
-\draw (S-3-1) -- (S-3-2);
- 
+\draw (S-1-1) -- (S-2-1);
+\draw (S-1-2) -- (S-1-9);
+
+\draw (S-1-3) -- (S-2-3);
+\draw (S-1-5) -- (S-2-5);
+\draw (S-1-7) -- (S-2-7);
+\draw (S-1-9) -- (S-2-9);
+
+%\draw (S-2-2) -- (S-2-3);
+%\draw (S-2-4) -- (S-2-5);
+%\draw (S-2-6) -- (S-2-7);
+%\draw (S-2-8) -- (S-2-9);
+
+%\draw (S-4-2) -- (S-4-3);
+%\draw (S-4-4) -- (S-4-5);
+%\draw (S-4-6) -- (S-4-7);
+%\draw (S-4-8) -- (S-4-9);
+
+\draw (S-6-1) -- (S-6-9);
+\draw (S-4-1) -- (S-6-1);
  
  
 \end{tikzpicture}
@@ -377,7 +428,10 @@ font=\sffamily\upshape,
 
 \subsection{Aufbau der Schaltung}
 
-\textbf{Textbeschreibung der Schaltung}
+In der oben skizzierten Schaltung sind die Widerstände $R_{1..4}$ parallel an die Spannungsquelle angeschlossen. 
+Die Widerstandswerte betragen $ R_1 = 150 \Omega, R_2 = 220 \Omega, R_3=470 \Omega, R_4=820 \Omega$. 
+Als Speisespannung wird $ U_G = 10V$ angelegt. 
+Mit den Messgeräten, die mit den Widerständen in Reihe geschaltet sind können die Ströme $I_{1..4}$ in den einzelnen Widerständen, sowie der Gesamtstrom $I_G$ durch die Schaltung gemessen werden.
 
 \subsection{Messwerte und Zusammenhänge}
 
@@ -385,14 +439,24 @@ In der oben beschrieben Schaltung wurden die folgenden Ströme gemessen.
 \begin{center}
   \begin{tabular}{ l | c | c | c | c | c}
     \hline
-    Strom      & I\textsubscript{1} & I\textsubscript{2} & I\textsubscript{3} & I\textsubscript{4} & I\textsubscript{G} \\ \hline
-    Wert in mA & 6 & 6 & 6 & 6 & 6 \\
+    Strom      & I\textsubscript{G} & I\textsubscript{1} & I\textsubscript{2} & I\textsubscript{3} & I\textsubscript{4}  \\ \hline
+    Wert in mA & 145 & 67 & 45 & 21,5 & 12 \\
     \hline
   \end{tabular}
 \end{center}
-Der Strom ist in allen Widerständen gleich groß. Oder allgemeiner ausgedrückt: In einer Reihenschaltung ist der Strom an jeder Stelle gemessen gleich groß.
 
-\section{Spannungsabhängigkeit}
+\textbf{blabla}
+
+\begin{align}
+I_G &= I_1 + I_2 + I_3 + I_4 \nonumber \\
+    &= 67mA + 45mA + 21,5mA + 12mA \nonumber \\
+    &= 145.5 mA \nonumber
+\end{align}
+Die Abweichung zwischen dem gemessenen und dem errechneten Gesamtstrom ergibt sich aus den verschiedenen Ungenauigkeiten. 
+Die verschiedenen Messbereiche des verwendeten Unigor A43 haben verschiedene Innenwiderstände, die sich auf die gemessenen Werte auswirken. 
+Dazu kommen noch Ablesefehler auf der analogen Messskala.
+
+\subsection{Spannungsabhängigkeit}
 \subsection{Messschaltung zur Messung der Spannung über die einzelnen Bauteile}
 
 \begin{center}
@@ -408,17 +472,17 @@ font=\sffamily\upshape,
   nodes={minimum width=0pt}
   ]
 {
-  &&&&  \\
-  &&&&  \\
-  &&&&  \\
-  &&&&  \\
-  &&&&  \\
+  &&&&&&&&  \\
+  &&&&&&&&  \\
+  &&&&&&&&  \\
+  &&&&&&&&  \\
+  &&&&&&&&  \\
 };
  
  
 %Orientierungshilfen
 %\foreach \j in {1,...,5}
-% \foreach \k in {1,...,5}{%
+% \foreach \k in {1,...,9}{%
 %\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
 %\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
 %\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
@@ -426,40 +490,67 @@ font=\sffamily\upshape,
  
 
 %Bauteile
-\draw (S-4-1) to  [generator={adjustable', name=ug}](S-2-1);
-\draw (S-2-2) to  [resistor={info'=R$_\mathsf{1}$, name=Wstd}](S-2-3);
-\draw (S-1-2) to  [voltmeter ={name=VM1}](S-1-3);
-\draw (S-2-4) to  [resistor={info'=R$_\mathsf{2}$, name=Wstd}](S-2-5);
-\draw (S-1-4) to  [voltmeter ={name=VM2}](S-1-5);
-\draw (S-4-4) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-4-5);
-\draw (S-5-4) to  [voltmeter ={name=VM3}](S-5-5);
-\draw (S-4-2) to  [resistor={info=R$_\mathsf{4}$, name=Wstd}](S-4-3);
-\draw (S-5-2) to  [voltmeter ={name=VM4}](S-5-3);
+\draw (S-4-1) to  [generator={name=Gen}](S-2-1);
+
+\draw (S-2-3) to  [resistor={info=R$_\mathsf{1}$, name=Wstd}](S-4-3);
+%\draw (S-4-3) to  [ammeter ={name=AM1}](S-6-3);
+\draw (S-2-2) to  [voltmeter ={name=VM1}](S-4-2);
+
+\draw (S-2-5) to  [resistor={info=R$_\mathsf{2}$, name=Wstd}](S-4-5);
+%\draw (S-4-5) to  [ammeter ={name=AM2}](S-6-5);
+\draw (S-2-4) to  [voltmeter ={name=VM2}](S-4-4);
+
+\draw (S-2-7) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-4-7);
+%\draw (S-4-7) to  [ammeter ={name=AM3}](S-6-7);
+\draw (S-2-6) to  [voltmeter ={name=VM3}](S-4-6);
+
+\draw (S-2-9) to  [resistor={info=R$_\mathsf{4}$, name=Wstd}](S-4-9);
+%\draw (S-4-9) to  [ammeter ={name=AM4}](S-6-9);
+\draw (S-2-8) to  [voltmeter ={name=VM4}](S-4-8);
+
+%\draw (S-1-1) to  [ammeter ={name=AMg}](S-1-2);
 
 %Spannungspfeile
 %Spannungspfeil der Quelle / des Voltmeters
-\draw[UPfeil=0.25em] ([xshift=6mm]S-2-1.east) -- ([xshift=6mm]S-4-1.east) node[midway, right]{U$\mathsf{_{G}}$};
+\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_G}$}([xshift=-.5em]Gen.south west);
+\draw[UPfeil=-1em]([xshift=.5em]VM1.north east) -- node [right]{U$\mathsf{_1}$}([xshift=.5em]VM1.south east);
+\draw[UPfeil=-1em]([xshift=.5em]VM2.north east) -- node [right]{U$\mathsf{_2}$}([xshift=.5em]VM2.south east);
+\draw[UPfeil=-1em]([xshift=.5em]VM3.north east) -- node [right]{U$\mathsf{_3}$}([xshift=.5em]VM3.south east);
+\draw[UPfeil=-1em]([xshift=.5em]VM4.north east) -- node [right]{U$\mathsf{_4}$}([xshift=.5em]VM4.south east);
 
-\draw[UPfeil=-1em]([yshift=.5em]VM1.north west) -- node [above]{U$\mathsf{_1}$}([yshift=.5em]VM1.north east);
-\draw[UPfeil=-1em]([yshift=.5em]VM2.north west) -- node [above]{U$\mathsf{_2}$}([yshift=.5em]VM2.north east);
-\draw[UPfeil=-1em]([yshift=-.5em]VM3.south east) -- node [below]{U$\mathsf{_3}$}([yshift=-.5em]VM3.south west);
-\draw[UPfeil=-1em]([yshift=-.5em]VM4.south east) -- node [below]{U$\mathsf{_4}$}([yshift=-.5em]VM4.south west);
+%Strompfeile
+%\draw[IPfeil=-1em]([xshift=-.5em]AM1.north west) -- node [left]{I$\mathsf{_1}$}([xshift=-.5em]AM1.south west);
+%\draw[IPfeil=-1em]([xshift=-.5em]AM2.north west) -- node [left]{I$\mathsf{_2}$}([xshift=-.5em]AM2.south west); 
+%\draw[IPfeil=-1em]([xshift=-.5em]AM3.north west) -- node [left]{I$\mathsf{_3}$}([xshift=-.5em]AM3.south west); 
+%\draw[IPfeil=-1em]([xshift=-.5em]AM4.north west) -- node [left]{I$\mathsf{_4}$}([xshift=-.5em]AM4.south west);
+%\draw[IPfeil=-1em]([yshift=.5em]AMg.north west) -- node [above]{I$\mathsf{_G}$}([yshift=.5em]AMg.north east);
  
 %Leiterbahnen
-\draw (S-2-1) -- (S-2-2);
-\draw (S-1-2) -- (S-2-2);
+\draw (S-1-1) -- (S-2-1);
+\draw (S-1-1) -- (S-1-9);
+
 \draw (S-1-3) -- (S-2-3);
-\draw (S-1-4) -- (S-2-4);
 \draw (S-1-5) -- (S-2-5);
-\draw (S-4-2) -- (S-5-2);
+\draw (S-1-7) -- (S-2-7);
+\draw (S-1-9) -- (S-2-9);
+
 \draw (S-4-3) -- (S-5-3);
-\draw (S-4-4) -- (S-5-4);
 \draw (S-4-5) -- (S-5-5);
-\draw (S-2-5) -- (S-4-5);
-\draw (S-2-3) -- (S-2-4);
-\draw (S-4-3) -- (S-4-4);
-\draw (S-4-1) -- (S-4-2);
- 
+\draw (S-4-7) -- (S-5-7);
+\draw (S-4-9) -- (S-5-9);
+
+\draw (S-2-2) -- (S-2-3);
+\draw (S-2-4) -- (S-2-5);
+\draw (S-2-6) -- (S-2-7);
+\draw (S-2-8) -- (S-2-9);
+
+\draw (S-4-2) -- (S-4-3);
+\draw (S-4-4) -- (S-4-5);
+\draw (S-4-6) -- (S-4-7);
+\draw (S-4-8) -- (S-4-9);
+
+\draw (S-5-1) -- (S-5-9);
+\draw (S-4-1) -- (S-5-1);
  
  
 \end{tikzpicture}
@@ -467,53 +558,78 @@ font=\sffamily\upshape,
 
 \subsection{Aufbau der Schaltung}
 
-\textbf{Textbeschreibung der Schaltung}
+In der oben skizzierten Schaltung sind die Widerstände $R_{1..4}$ parallel an die Spannungsquelle angeschlossen. 
+Die Widerstandswerte betragen $ R_1 = 150 \Omega, R_2 = 220 \Omega, R_3=470 \Omega, R_4=820 \Omega$. 
+Als Speisespannung wird $ U_G = 10V$ angelegt. 
+Mit den parallel zu den Widerständen angeschlossenen Messgeräten können die Spannungen $U_{1..4}$ an den einzelnen Widerständen gemessen werden.
 
 \subsection{Messwerte und Zusammenhänge}
 In der oben beschrieben Schaltung wurden die folgenden Spannungen gemessen.
 \begin{center}
   \begin{tabular}{ l | c | c | c | c | c}
     \hline
-    Strom      & U\textsubscript{1} & U\textsubscript{2} & U\textsubscript{3} & U\textsubscript{4} & U\textsubscript{G} \\ \hline
-    Wert in V  & 0,902 & 1,334 & 2,826 & 4,943 & 10,01 \\
+    Spannung   & U\textsubscript{G} & U\textsubscript{1} & U\textsubscript{2} & U\textsubscript{3} & U\textsubscript{4}  \\ \hline
+    Wert in V  & 10,04 & 9,99 & 10,01 & 10,0 & 9,99 \\
     \hline
   \end{tabular}
 \end{center}
-Die Spannung teilt sich gemäß der Widerstandswerte auf alle Widerstände auf. Die Spannungen U\textsubscript{n}, die an den einzelnen Widerständen abfallen ergeben zusammen die angelegte Generatorspannung U\textsubscript{G}.
+An allen Widerständen liegt, bis auf Messfehler genau, die selbe Spannung an.
+\[U_G=U_1=U_2=U_3=U_4\]
+
+\textbf{blabla}
 
 \section{Erkenntnisse}
 
-\subsection{Wie verhalten sich die Ströme bei einer Reihenschaltung}
-In einer Reihenschaltung fließt, sofern keine Widerstandswerte verändert werden, durch alle Widerstände der gleiche Strom.\\
-\[I_{G}=\frac{U_{G}}{R_{1}+R_{2}+R{3}+R{4}}\]
+\subsection{Wie verhalten sich die Ströme bei einer Parallelschaltung?}
+Der Gesamtstrom teilt sich auf alle Widerstände auf. Durch jeden Widerstand fließt der Strom $I_n=\frac{U_n}{R_n}$.
+Durch alle Widerstände zusammen fließt ein Gesamtstrom der der Summe aller Einzelströme entspricht.
+\[I_G = I_1 + I_2 + I_3 + I_4\]
 
 \subsection{Beziehung zwischen der Generatorspannung und den gemessenen Spannungen}
-Die Generatorspannung teilt sich auf alle Widerstände auf. An kedem Widerstand fällt die Spannung $U_{G}=\frac{I_{G}}{R_{n}} $ ab. Die Generatorspannung entspricht der Summe der Einzelspannungen.
-\[U_{G}=U_{1}+U_{2}+U_{3}+U_{4}\]
+An jedem Widerstand liegt die selbe Spannung an. Die positive Seite eines jeden Widerstands liegt auf dem selben Potential.
+\[U_G=U_1=U_2=U_3=U_4\]
 
 \subsection{Gesamtwiderstand und Beziehung der einzelnen Widerstandswerte zum Gesamtwiderstand}
+Der Gesamtwiderstand der Schaltung lässt sich aus dem gemessenen Gesamtstrom und der angelegten Spannung berechnen.
+\[R_{ges} = \frac{U_G}{I_G} = \frac{10,04V}{145mA}= 69,2\Omega\]
 
-
+\subsection{Mathematische Herleitung}
+Aus dem Ohmschen Gesetz kann man den Gesamtwiderstand auch über den fließenden Strom herleiten.
 \begin{align}
-R_{G} & =\frac{U_{G}}{I_{G}} = \frac{10.01V}{6mA} =  1668 \Omega \nonumber \\
-      & \approx R{1}+R{2}+R{3}+R{4} \nonumber \\
-      & = 150\Omega + 220\Omega + 470\Omega + 820\Omega = 1660\Omega \nonumber 
+I_{G} & = I_1+I_2+I_3+I_4 \nonumber \\
+\frac{U_G}{R_{ges}} &= \frac{U_1}{R_1} + \frac{U_2}{R_2} + \frac{U_3}{R_3} + \frac{U_4}{R_4} \nonumber \\
+\frac{1}{R_{ges}} &= \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \frac{1}{R_4} \nonumber \\
+\frac{1}{R_{ges}} &= \frac{1}{150\Omega} + \frac{1}{220\Omega} + \frac{1}{470\Omega} + \frac{1}{820\Omega} \nonumber \\
+				  &= 0,0145 \frac{1}{\Omega} \nonumber\\
+\Rightarrow R_{ges} &= 69,44\Omega \nonumber
+\end{align}
+Da die an allen Widerständen anliegende Spannung gleich ist kann die gesamte Gleichung durch $U_G$ geteilt werden. Dadurch wird die Spannung aus der  Gleichung eliminiert. \\
+Mit eingesetzten Zahlen kommt man wieder auf den $ R_{ges}$, der schon oben ausgerechnet wurde.
+\newpage
+Da eine Berechnung über Kehrwerte oft sehr aufwendig ist wurde eine neue Größe eingeführt, der Leitwert $G$. Er wird in Siemens angegeben und entspricht dem Kehrwert des Widerstandes.
+\begin{align}
+\frac{1}{R_{ges}} &= \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \frac{1}{R_4} \nonumber \\
+\frac{1}{\frac{U_G}{I_G}} &= \frac{1}{\frac{U_1}{I_1}} + \frac{1}{\frac{U_2}{I_2}} + \frac{1}{\frac{U_3}{I_3}} + \frac{1}{\frac{U_4}{I_4}} \nonumber \\
+\frac{I_G}{U_G} &= \frac{I_1}{U_1} + \frac{I_2}{U_2} + \frac{I_3}{U_3} + \frac{I_4}{U_4} \nonumber \\
+G_{ges} &= G_1 + G_2 + G_3 + G_4 \nonumber 
+\end{align}
+
+Für zwei parallel geschaltete Widerstände, ein Fall, den man in vielen Schaltungen findet lässt sich eine vereinfachte Sonderformel finden.
+\begin{align}
+\frac{1}{R_{ges}} &= \frac{1}{R_1} + \frac{1}{R_2} \nonumber \\
+\frac{1}{R_{ges}} &= \frac{R_2}{R_1 \cdot (R_1 \cdot R_2)} + \frac{R_1}{R_2\cdot (R_1 \cdot R_2)} \nonumber \\
+\frac{1}{R_{ges}} &= \frac{R_2}{R_1 \cdot R_2} + \frac{R_1}{R_1 \cdot R_2} \nonumber \\
+\frac{1}{R_{ges}} &= \frac{R_2+R_1}{R_1 \cdot R_2} \nonumber \\
+\alignedbox{R_{ges} }{= \frac{R_2 \cdot R_1}{R_1 + R_2}} \nonumber 
 \end{align}
 
 
 
 
-\subsection{Abhängigkeiten}
-\subsubsection{Einzelspannungen und Widerstände}
-\[U_n = \frac{I_G}{R_n}\]
-\subsubsection{Einzelspannungen und Ströme}
-\begin{align}
-I_G & = I_1 = I_2 = I_3 = I_4 \nonumber \\
-\frac{U_G}{R_G} & =\frac{U_1}{R_1}=\frac{U_2}{R_2}=\frac{U_3}{R_3}=\frac{U_4}{R_4} \nonumber
-\end{align}
+\section{Anwenderschaltung}
+Zwei Lampen, $H_1 (12V/240mA)$ und $H_2 (12V/96mA)$ sollen an einer Spannungsquelle mit $U_G=24V$ angeschlossen werden können. Ein zusätzlicher Widerstand ist nötig beide Lampen zusammen betreiben zu können. Dieser wird parallel zu $H_2$ gesteckt.
 
-\section{Zusatzaufgabe}
-Eine LED soll an einer Spannungsquelle mit $U_{Batt}=12V$ betrieben werden. Die LED benötigt eine Versorgungsspannung von $U_{LED}=2V$ und einen Strom von $I_{LED}=20mA$. Wie muss der Vorwiderstand dimensioniert werden.
+\subsection{Schaltung}
 
 \begin{center}
 \begin{tikzpicture}[%show background rectangle,
@@ -546,37 +662,46 @@ font=\sffamily\upshape,
  
 
 %Bauteile
-\draw (S-2-1) to  [battery={name=Bat}](S-4-1);
-\draw (S-1-3) to  [resistor={info=R$_\mathsf{vor}$, name=Wstd}](S-3-3);
-\draw (S-3-3) to  [diode={light emitting}](S-5-3);
+\draw (S-4-1) to  [generator={name=Gen}](S-2-1);
+\draw (S-1-2) to  [bulb={info=H$_\mathsf{1}$, name=H1}](S-3-2);
+\draw (S-3-2) to  [bulb={info=H$_\mathsf{2}$, name=H2}](S-5-2);
+\draw (S-3-3) to  [resistor={info=R$_\mathsf{P}$, name=Wstd}](S-5-3);
 
 
 %Spannungspfeile
 %Spannungspfeil der Quelle / des Voltmeters
-\draw[UPfeil=0.25em] ([xshift=6mm]S-2-1.east) --
-([xshift=6mm]S-4-1.east) node[midway, right]{U$\mathsf{_{Batt}}$};
+\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_G}$}([xshift=-.5em]Gen.south west);
+
  
 %Leiterbahnen
 \draw (S-1-1) -- (S-2-1);
-\draw (S-1-1) -- (S-1-3);
+\draw (S-1-1) -- (S-1-2);
 \draw (S-4-1) -- (S-5-1);
 \draw (S-5-1) -- (S-5-3); 
+\draw (S-3-2) -- (S-3-3);
 
 \end{tikzpicture}
 \end{center}
-Widerstand der LED im Betrieb
-\[R_{LED}=\frac{U_{LED}}{I_{LED}}=\frac{2V}{20mA}=100\Omega\]
-Ein Vorwiderstand wird mit der LED in Reihe geschalten, also addieren sich Der Vorwiderstand und der Widerstand der LED zum Gesamtwiderstand der Schaltung. 
-\begin{align}
- R_{G} & = R_{vor}+R_{LED} \nonumber \\ 
- \frac{U_{Batt}}{I_{LED}} & = R_{vor} + \frac{U_{LED}}{I_{LED}} \nonumber \\
- R_{vor} & = \frac{U_{Batt}}{I_{LED}}-\frac{U_{LED}}{I_{LED}} \nonumber \\
- 		 & = \frac{U_{Batt} - U_{LED}}{I_{LED}} \nonumber \\
- 		 & = \frac{12V - 2V}{20mA} \nonumber \\
- R_{vor} & = 500\Omega \nonumber 
-\end{align}
-Es wird also ein Vorwiderstand mit $ R_{vor} = 500\Omega $ in der Schaltung benötigt.
 
+\subsection{Berechnung des Parallelwiderstands}
+Die Lampe $H_1$ ist in Reihe zu der Kombination aus Lampe $H_2$ und Parallelwiderstand $R_P$. An beiden Schaltungsteilen fällt je $\frac{U_G}{2}=12V$ ab. Durch $H_2$ darf maximal ein Strom von $96mA$ fließen, der Rest muss durch den Parallelwiderstand.
+\begin{align}
+I_G &= I_{H_2} + I_{R_P} \nonumber \\
+I_{R_P} &= I_G - I_{H_2}  \nonumber \\
+I_{R_P} &= 240mA - 96mA = 144mA \nonumber
+\end{align}
+Also ist ein Widerstand gesucht, der bei $12V$ angelegter Spannung $144mA$ Strom durchlässt.
+\begin{align}
+R_P &= \frac{U_{H_2}}{I_{R_P}} \nonumber \\
+R_P &= \frac{12V}{144mA} = 83,33 \Omega \nonumber 
+\end{align}
+Im Widerstand wird dann eine Leistung von $P_{R_P} = U \cdot I_{R_P} = 12V \cdot 144mA = 1,27W$ umgesetzt.
+
+Bei Glühfadenbruch der Lampe $H_1$ ist der Stromkreis unterbrochen. Es kann kein Strom mehr fließen und beide Lampen sind aus.
+Bei einem Glühfadenbruch der Lampe $H_2$ wird nur die Lampe $H_1$ etwas dunkler. Die folgenden Betrachtungen gelten nun:
+\[R_{neu} = R_{H_1} + R_P = 50 \Omega + 83,33 \Omega = 133,33 \Omega \]
+\[I_{neu} = \frac{U_G}{R_{neu}} = \frac{24V}{133,33 \Omega}=180mA \]
+\[U_{H_{1}neu} = R_{H_1} \cdot I_{neu} = 50 \Omega \cdot 180mA = 9V \]
 
 %%%
 %%% end main document

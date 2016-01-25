@@ -1,0 +1,786 @@
+
+%%% main document {{{
+
+\documentclass[
+a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper, ...
+% landscape,   %% sets the orientation to landscape
+% twoside,     %% changes to a two-page-layout (alternatively: oneside)
+% twocolumn,   %% changes to a two-column-layout
+ headsepline, %% add a horizontal line below the column title
+% footsepline, %% add a horizontal line above the page footer
+% titlepage,   %% only the titlepage (using titlepage-environment) appears on the first page (alternatively: notitlepage)
+% parskip,     %% insert an empty line between two paragraphs (alternatively: halfparskip, ...)
+% leqno,       %% equation numbers left (instead of right)
+% fleqn,       %% equation left-justified (instead of centered)
+% tablecaptionabove, %% captions of tables are above the tables (alternatively: tablecaptionbelow)
+% draft,       %% produce only a draft version (mark lines that need manual edition and don't show graphics)
+% 10pt         %% set default font size to 10 point
+11pt         %% set default font size to 11 point
+% 12pt         %% set default font size to 12 point
+]{scrartcl}  %% article, see KOMA documentation (scrguide.dvi)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% packages
+%%%
+
+%%%
+%%% encoding and language set
+%%%
+
+%%% ngerman: language set to new-german
+\usepackage{ngerman}
+
+%%% babel: language set (can cause some conflicts with package ngerman)
+%%%        use it only for multi-language documents or non-german ones
+%\usepackage[ngerman]{babel}
+
+%%% inputenc: coding of german special characters
+\usepackage[utf8]{inputenc}
+
+%%% fontenc, ae, aecompl: coding of characters in PDF documents
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%%%
+%%% technical packages
+%%%
+
+%%% amsmath, amssymb, amstext: support for mathematics
+%\usepackage{amsmath,amssymb,amstext}
+
+%%% psfrag: replace PostScript fonts
+\usepackage{psfrag}
+
+%%% listings: include programming code
+%\usepackage{listings}
+
+%%% units: technical units
+\usepackage{units}
+
+%%% tiefgestellte zahlen
+\usepackage{subscript}
+
+%%% mathefoo
+\usepackage{amsmath}
+
+
+\usepackage{xcolor}
+% TikZ-Bibliotheken
+\usepackage{tikz}
+ \usetikzlibrary{backgrounds}
+ \usetikzlibrary{matrix}
+ \usetikzlibrary{circuits.ee.IEC}
+ \usetikzlibrary{positioning}
+ 
+ 
+%Hintergrundstyle - optional
+\tikzstyle{background rectangle}=
+  [thick,draw=\lightgray, fill=white!99!black, rounded corners]
+ 
+%Volt- und Amperemeter festlegen:
+\tikzset{circuit declare symbol = ammeter}
+\tikzset{set ammeter graphic ={draw,generic circle IEC, minimum size=5mm,info=center:A}}
+\tikzset{circuit declare symbol = voltmeter}
+\tikzset{set voltmeter graphic ={draw,generic circle IEC, minimum size=5mm,info=center:V}}
+\tikzset{circuit declare symbol = generator}
+\tikzset{set generator graphic ={draw,rectangle ee, minimum size=5mm,info=center:G}}
+% Spannungs und Strompfeile
+\tikzset{
+  Pfeil/.style={thick,shorten >=#1,shorten <=#1,->}, % für Peile
+  UPfeil/.style={blue,Pfeil=#1,font={\sffamily\itshape}},% für Spannungspfeile
+  IPfeil/.style={red,Pfeil=#1,font={\ttfamily\itshape}} % für Strompfeile
+}
+
+
+%Boxen
+\usepackage{empheq}
+ 
+% Command "alignedbox{}{}" for a box within an align environment
+% Source: http://www.latex-community.org/forum/viewtopic.php?f=46&t=8144
+\newlength\dlf  % Define a new measure, dlf
+\newcommand\alignedbox[2]{
+% Argument #1 = before & if there were no box (lhs)
+% Argument #2 = after & if there were no box (rhs)
+&  % Alignment sign of the line
+{
+\settowidth\dlf{$\displaystyle #1$}  
+    % The width of \dlf is the width of the lhs, with a displaystyle font
+\addtolength\dlf{\fboxsep+\fboxrule}  
+    % Add to it the distance to the box, and the width of the line of the box
+\hspace{-\dlf}  
+    % Move everything dlf units to the left, so that & #1 #2 is aligned under #1 & #2
+\boxed{#1 #2}
+    % Put a box around lhs and rhs
+}
+}
+
+%%%
+%%% layout
+%%%
+
+%%% scrpage2: KOMA heading and footer
+%%% Note: if you don't use this package, please remove 
+%%%       \pagestyle{scrheadings} and corresponding settings
+%%%       below too.
+\usepackage[automark]{scrpage2}
+
+
+%%%
+%%% PDF
+%%%
+
+\usepackage{ifpdf}
+
+%%% Should be LAST usepackage-call!
+%%% For docu on that, see reference on package ``hyperref''
+\ifpdf%   (definitions for using pdflatex instead of latex)
+
+  %%% graphicx: support for graphics
+  %\usepackage[pdftex]{graphicx}
+
+  \pdfcompresslevel=9
+
+  %%% hyperref (hyperlinks in PDF): for more options or more detailed
+  %%%          explanations, see the documentation of the hyperref-package
+  \usepackage[%
+    %%% general options
+    pdftex=true,      %% sets up hyperref for use with the pdftex program
+    %plainpages=false, %% set it to false, if pdflatex complains: ``destination with same identifier already exists''
+    %
+    %%% extension options
+    backref,      %% adds a backlink text to the end of each item in the bibliography
+    pagebackref=false, %% if true, creates backward references as a list of page numbers in the bibliography
+    colorlinks=true,   %% turn on colored links (true is better for on-screen reading, false is better for printout versions)
+    %
+    %%% PDF-specific display options
+    bookmarks=true,          %% if true, generate PDF bookmarks (requires two passes of pdflatex)
+    bookmarksopen=false,     %% if true, show all PDF bookmarks expanded
+    bookmarksnumbered=false, %% if true, add the section numbers to the bookmarks
+    %pdfstartpage={1},        %% determines, on which page the PDF file is opened
+    pdfpagemode=None         %% None, UseOutlines (=show bookmarks), UseThumbs (show thumbnails), FullScreen
+  ]{hyperref}
+
+
+  %%% provide all graphics (also) in this format, so you don't have
+  %%% to add the file extensions to the \includegraphics-command
+  %%% and/or you don't have to distinguish between generating
+  %%% dvi/ps (through latex) and pdf (through pdflatex)
+  \DeclareGraphicsExtensions{.pdf}
+
+\else %else   (definitions for using latex instead of pdflatex)
+
+  \usepackage[dvips]{graphicx}
+
+  \DeclareGraphicsExtensions{.eps}
+
+  \usepackage[%
+    dvips,           %% sets up hyperref for use with the dvips driver
+    colorlinks=false %% better for printout version; almost every hyperref-extension is eliminated by using dvips
+  ]{hyperref}
+
+\fi
+
+
+%%% sets the PDF-Information options
+%%% (see fields in Acrobat Reader: ``File -> Document properties -> Summary'')
+%%% Note: this method is better than as options of the hyperref-package (options are expanded correctly)
+\hypersetup{
+  pdftitle={}, %%
+  pdfauthor={}, %%
+  pdfsubject={}, %%
+  pdfcreator={Accomplished with LaTeX2e and pdfLaTeX with hyperref-package.}, %% 
+  pdfproducer={}, %%
+  pdfkeywords={} %%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% user defined commands
+%%%
+
+%%% \mygraphics{}{}{}
+%% usage:   \mygraphics{width}{filename_without_extension}{caption}
+%% example: \mygraphics{0.7\textwidth}{rolling_grandma}{This is my grandmother on inlinescates}
+%% requires: package graphicx
+%% provides: including centered pictures/graphics with a boldfaced caption below
+%% 
+\newcommand{\mygraphics}[3]{
+  \begin{center}
+    \includegraphics[width=#1, keepaspectratio=true]{#2} \\
+    \textbf{#3}
+  \end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% define the titlepage
+%%%
+
+% \subject{}   %% subject which appears above titlehead
+% \titlehead{} %% special heading for the titlepage
+
+%%% title
+\title{Messbericht Gemischte Schaltung}
+
+%%% author(s)
+\author{Felix Schiller \\ Sebastian Littau \\ E1FS2}
+
+%%% date
+\date{Reutlingen, am \today{}}
+
+% \publishers{}
+
+% \thanks{} %% use it instead of footnotes (only on titlepage)
+
+% \dedication{} %% generates a dedication-page after titlepage
+
+
+%%% uncomment following lines, if you want to:
+%%% reuse the maketitle-entries for hyperref-setup
+%\newcommand\org@maketitle{}
+%\let\org@maketitle\maketitle
+%\def\maketitle{%
+%  \hypersetup{
+%    pdftitle={\@title},
+%    pdfauthor={\@author}
+%    pdfsubject={\@subject}
+%  }%
+%  \org@maketitle
+%}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% set heading and footer
+%%%
+
+%%% scrheadings default: 
+%%%      footer - middle: page number
+\pagestyle{scrheadings}
+
+%%% user specific
+%%% usage:
+%%% \position[heading/footer for the titlepage]{heading/footer for the rest of the document}
+
+%%% heading - left
+\ihead[]{Schiller, Felix \\ Littau, Sebastian}
+
+%%% heading - center
+\chead[]{Messbericht \\Gemischte Schaltung}
+
+%%% heading - right
+\ohead[]{\thepage}
+
+%%% footer - left
+% \ifoot[]{}
+
+%%% footer - center
+% \cfoot[]{}
+
+%%% footer - right
+% \ofoot[]{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% begin document
+%%%
+
+\begin{document}
+
+% \pagenumbering{roman} %% small roman page numbers
+
+%%% include the title
+% \thispagestyle{empty}  %% no header/footer (only) on this page
+\maketitle
+
+%%% start a new page and display the table of contents
+\newpage
+\tableofcontents
+
+%%% start a new page and display the list of figures
+% \newpage
+% \listoffigures
+
+%%% start a new page and display the list of tables
+% \newpage
+% \listoftables
+
+%%% display the main document on a new page 
+% \newpage
+
+% \pagenumbering{arabic} %% normal page numbers (include it, if roman was used above)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% begin main document
+%%% structure: \section \subsection \subsubsection \paragraph \subparagraph
+%%%
+\section{Messaufgabe}
+An einer gemischten Schaltung von 5 Widerständen soll durch Messung ermittelt werden, wie sich 
+\begin{enumerate}
+	\item die Ströme zwischen den einzelnen Bauteilen und 
+	\item die Spannungen an den einzelnen Bauteilen verhalten. 
+\end{enumerate}
+
+
+\section{Durchführung der Messung}
+\subsection{Messschaltung mit den vorgegebenen Widerständen}
+
+\begin{center}
+\begin{tikzpicture}[%show background rectangle,
+circuit ee IEC, circuit symbol lines/.style={draw,thick},
+font=\sffamily\upshape,
+>=latex % Voreinstellung für Pfeilspitzen
+]
+\matrix (S) [
+  matrix of nodes, nodes in empty cells,
+  inner sep=0pt, outer sep=-.5\pgflinewidth,
+  column sep=15mm, row sep = 7mm,
+  nodes={minimum width=0pt}
+  ]
+{
+  &&&&&&  \\
+  &&&&&&  \\
+  &&&&&&  \\
+  &&&&&&  \\
+  &&&&&&  \\
+  &&&&&&  \\
+};
+ 
+ 
+%Orientierungshilfen
+%\foreach \j in {1,...,8}
+% \foreach \k in {1,...,9}{%
+%\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
+%\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
+%\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
+%};%
+ 
+
+%Bauteile
+\draw (S-4-1) to  [generator={name=Gen}](S-2-1);
+
+\draw (S-1-2) to  [resistor={info=R$_\mathsf{1}$, name=W1}](S-1-3);
+\draw (S-3-2) to  [resistor={info'=R$_\mathsf{2}$, name=W2}](S-3-3);
+
+\draw (S-4-4) to  [resistor={info=R$_\mathsf{3}$, name=W3}](S-6-4);
+
+\draw (S-1-5) to  [resistor={info=R$_\mathsf{5}$, name=W5}](S-1-6);
+\draw (S-3-5) to  [resistor={info'=R$_\mathsf{4}$, name=W4}](S-3-6);
+
+\draw (S-1-2) to  [make contact={info=Brücke 1, name=B1}](S-3-2);
+\draw (S-4-6) to  [make contact={info=Brücke 2, name=B1}](S-6-6);
+
+\draw (S-1-1) to  [ammeter ={name=AMg}](S-1-2);
+
+%Spannungspfeile
+%Spannungspfeil der Quelle / des Voltmeters
+\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_G}$}([xshift=-.5em]Gen.south west);
+%\draw[UPfeil=-1em]([xshift=.5em]VM1.north east) -- node [right]{U$\mathsf{_1}$}([xshift=.5em]VM1.south east);
+%\draw[UPfeil=-1em]([xshift=.5em]VM2.north east) -- node [right]{U$\mathsf{_2}$}([xshift=.5em]VM2.south east);
+%\draw[UPfeil=-1em]([xshift=.5em]VM3.north east) -- node [right]{U$\mathsf{_3}$}([xshift=.5em]VM3.south east);
+%\draw[UPfeil=-1em]([xshift=.5em]VM4.north east) -- node [right]{U$\mathsf{_4}$}([xshift=.5em]VM4.south east);
+
+%Strompfeile
+%\draw[IPfeil=-1em]([xshift=-.5em]AM1.north west) -- node [left]{I$\mathsf{_1}$}([xshift=-.5em]AM1.south west);
+%\draw[IPfeil=-1em]([xshift=-.5em]AM2.north west) -- node [left]{I$\mathsf{_2}$}([xshift=-.5em]AM2.south west); 
+%\draw[IPfeil=-1em]([xshift=-.5em]AM3.north west) -- node [left]{I$\mathsf{_3}$}([xshift=-.5em]AM3.south west); 
+%\draw[IPfeil=-1em]([xshift=-.5em]AM4.north west) -- node [left]{I$\mathsf{_4}$}([xshift=-.5em]AM4.south west);
+%\draw[IPfeil=-1em]([yshift=.5em]AMg.north west) -- node [above]{I$\mathsf{_G}$}([yshift=.5em]AMg.north east);
+ 
+%Leiterbahnen
+\draw (S-1-1) -- (S-2-1);
+\draw (S-1-3) -- (S-1-5);
+\draw (S-1-4) -- (S-4-4);
+\draw (S-3-3) -- (S-3-5);
+%\draw (S-1-2) -- (S-2-2);
+\draw (S-1-6) -- (S-4-6);
+%\draw (S-5-6) -- (S-6-6);
+\draw (S-6-1) -- (S-6-6);
+\draw (S-4-1) -- (S-6-1);
+ 
+\end{tikzpicture}
+\end{center}
+In der obigen Schaltung sind die folgenden Widerstände verbaut: $R_1 = 150\Omega, R_2 = 220\Omega, R_3=330\Omega, R_4=470\Omega$ und $R_5=820\Omega$.
+Die Schaltung wird mit einer konstanten Speisespannung von $U_G=10V$ versorgt. 
+Mit einem Messgerät werden nacheinander die Spannungen an den Widerständen und die Ströme durch die Widerstände bei den vier möglichen Brückenkombinationen gemessen.
+
+\subsection{Messwerte}
+
+In der oben beschrieben Schaltung wurden die folgenden Ströme und Spannungen gemessen. 
+
+\begin{center}
+  \begin{tabular}{ l | c | c | c | c }
+    \hline
+    $U_G=10V$   & ohne Brücken & mit Brücke 1 & mit Brücke 2 & mit beiden Brücken \\ \hline
+    $I_1$ & 20,5 & 14   & 32   & 23,6 \\ \hline
+    $I_2$ & 0    & 9,3  & 0    & 16   \\ \hline
+    $I_3$ & 21   & 23,5 & 15   & 19   \\ \hline
+    $I_4$ & 0    & 0    & 11   & 13,5 \\ \hline
+    $I_5$ & 0    & 0    & 6,2  & 7,7  \\ \hline
+    $I_6$ & 20,5 & 23,5 & 32,5 & 40   \\ \hline
+    $U_1$ & 3,08 & 2,09 & 4,83 & 3,58 \\ \hline
+    $U_2$ & 0    & 2,1  & 0    & 3,59 \\ \hline
+    $U_3$ & 6,87 & 7,85 & 5,08 & 6,32 \\ \hline
+    $U_4$ & 0    & 0    & 5,08 & 6,32 \\ \hline
+    $U_5$ & 0,012 & 0,008 & 5,1 & 6,33 \\ \hline
+    \hline
+  \end{tabular}
+\end{center}
+
+Aus den gemessenen Strömen und Spannungen kann man die Werte der einzelnen Widerstände ausrechnen.
+$R_{gem}$ ist mit der Widerstand Messfunktion des Fluke Multimeters gemessen.
+
+\begin{center}
+  \begin{tabular}{ l | c | c | c | c }
+    \hline
+    $U_G=10V$   & ohne Brücken & mit Brücke 1 & mit Brücke 2 & mit beiden Brücken \\ \hline
+    $R_{gem}$ & 479    & 419    & 304,8 & 244,6 \\ \hline
+    $R_{1}$   & 150,24 & 149,28 & 150,9 & 151,6 \\ \hline
+    $R_{2}$   & -      & 225,8  & -     & 224,3 \\ \hline
+    $R_{3}$   & 327,14 & 334,04 & 338,6 & 332,6 \\ \hline
+    $R_{4}$   & -      & -      & 468,1 & 468,1 \\ \hline
+    $R_{5}$   & -      & -      & 822   & 822   \\ \hline
+    \hline
+  \end{tabular}
+\end{center}
+
+\begin{align}
+I_G &= I_1 + I_2 + I_3 + I_4 \nonumber \\
+    &= 67mA + 45mA + 21,5mA + 12mA \nonumber \\
+    &= 145.5 mA \nonumber
+\end{align}
+Die Abweichung zwischen dem gemessenen und dem errechneten Gesamtstrom ergibt sich aus den verschiedenen Ungenauigkeiten. 
+Die verschiedenen Messbereiche des verwendeten Unigor A43 haben verschiedene Innenwiderstände, die sich auf die gemessenen Werte auswirken. 
+Dazu kommen noch Ablesefehler auf der analogen Messskala.
+
+\subsection{Rechnerische Gesamtwiderstände}
+
+Die Schaltung verändert sich je nach dem welche der Brücken gesteckt sind. Zu jeder Variante lässt sich ein Ersatzschaltbild erstellen.
+
+\subsubsection{Ohne Brücken}
+\begin{center}
+\begin{tikzpicture}[%show background rectangle,
+circuit ee IEC, circuit symbol lines/.style={draw,thick},
+font=\sffamily\upshape,
+>=latex % Voreinstellung für Pfeilspitzen
+]
+\matrix (S) [
+  matrix of nodes, nodes in empty cells,
+  inner sep=0pt, outer sep=-.5\pgflinewidth,
+  column sep=15mm, row sep = 7mm,
+  nodes={minimum width=0pt}
+  ]
+{
+  &&&  \\
+  &&&  \\
+  &&&  \\
+  &&&  \\
+  &&&  \\
+};
+ 
+ 
+%Orientierungshilfen
+%\foreach \j in {1,...,5}
+% 	\foreach \k in {1,...,3}{%
+%		\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
+%		\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
+%		\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
+%};%
+ 
+
+%Bauteile
+\draw (S-4-1) to  [generator={name=Gen}](S-2-1);
+
+\draw (S-1-3) to  [resistor={info=R$_\mathsf{1}$, name=Wstd}](S-3-3);
+\draw (S-3-3) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-5-3);
+%\draw (S-4-3) to  [ammeter ={name=AM1}](S-6-3);
+%\draw (S-2-2) to  [voltmeter ={name=VM1}](S-4-2);
+
+%\draw (S-1-1) to  [ammeter ={name=AMg}](S-1-2);
+
+%Spannungspfeile
+%Spannungspfeil der Quelle / des Voltmeters
+%\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_G}$}([xshift=-.5em]Gen.south west);
+
+%Strompfeile
+%\draw[IPfeil=-1em]([xshift=-.5em]AM1.north west) -- node [left]{I$\mathsf{_1}$}([xshift=-.5em]AM1.south west);
+
+%Leiterbahnen
+\draw (S-1-1) -- (S-2-1);
+\draw (S-1-1) -- (S-1-3);
+\draw (S-5-1) -- (S-5-3);
+\draw (S-5-1) -- (S-4-1);
+ 
+\end{tikzpicture}
+\end{center}
+
+Ohne die beiden Brücken schnurrt die Schaltung zu einer Reihenschaltung aus $R_1$ und $R_3$ zusammen. Das Potential an beiden Seiten von $R_4$ und $R_5$ ist gleich groß. Die Widerstände sind zwar in einem Kreis gesteckt, es fließt aber kein Strom, da kein Potentialunterschied besteht.
+\begin{align}
+R_G &= R_1 + R_3  \nonumber \\
+	&= 150,24 \Omega + 327,14 \Omega \nonumber \\
+	&= 477,38 \Omega \nonumber 
+\end{align}
+Gemessen wurden hier $479 \Omega$ was einer Abweichung von $0,3\%$ entspricht.
+
+
+\subsubsection{Mit Brücke 1}
+\begin{center}
+\begin{tikzpicture}[%show background rectangle,
+circuit ee IEC, circuit symbol lines/.style={draw,thick},
+font=\sffamily\upshape,
+>=latex % Voreinstellung für Pfeilspitzen
+]
+\matrix (S) [
+  matrix of nodes, nodes in empty cells,
+  inner sep=0pt, outer sep=-.5\pgflinewidth,
+  column sep=15mm, row sep = 7mm,
+  nodes={minimum width=0pt}
+  ]
+{
+  &&&  \\
+  &&&  \\
+  &&&  \\
+  &&&  \\
+  &&&  \\
+};
+ 
+ 
+%Orientierungshilfen
+%\foreach \j in {1,...,5}
+% 	\foreach \k in {1,...,3}{%
+%		\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
+%		\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
+%		\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
+%};%
+ 
+
+%Bauteile
+\draw (S-4-1) to  [generator={name=Gen}](S-2-1);
+
+\draw (S-1-2) to  [resistor={info=R$_\mathsf{1}$, name=Wstd}](S-3-2);
+\draw (S-1-3) to  [resistor={info=R$_\mathsf{2}$, name=Wstd}](S-3-3);
+\draw (S-3-3) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-5-3);
+%\draw (S-4-3) to  [ammeter ={name=AM1}](S-6-3);
+%\draw (S-2-2) to  [voltmeter ={name=VM1}](S-4-2);
+
+%\draw (S-1-1) to  [ammeter ={name=AMg}](S-1-2);
+
+%Spannungspfeile
+%Spannungspfeil der Quelle / des Voltmeters
+%\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_G}$}([xshift=-.5em]Gen.south west);
+
+%Strompfeile
+%\draw[IPfeil=-1em]([xshift=-.5em]AM1.north west) -- node [left]{I$\mathsf{_1}$}([xshift=-.5em]AM1.south west);
+
+%Leiterbahnen
+\draw (S-1-1) -- (S-2-1);
+\draw (S-1-1) -- (S-1-3);
+\draw (S-5-1) -- (S-5-3);
+\draw (S-5-1) -- (S-4-1);
+\draw (S-3-2) -- (S-3-3);
+ 
+\end{tikzpicture}
+\end{center}
+Mit gesteckter Brücke 1 kommt der Widerstand $R_2$, der parallel zu $R_1$ ist, hinzu. 
+\[R_{ges}=(R_1 || R_2)+R_3 \]
+Diese Schreibweise ist in der E-Technik gebräuchlich hat aber keine direkte mathematische Bedeutung und muss nach $\frac{R_1 \cdot R_2}{R_1+R_3}$ aufgelöst werden.
+\begin{align}
+R_G &= \frac{R_1 \cdot R_2}{R_1+R_2} + R_3 \nonumber \\ 
+	&= \frac{149,28\Omega \cdot 225,8 \Omega}{149,28\Omega + 225,8 \Omega} + 334,04 \Omega \nonumber \\
+	&= 423,9 \Omega \nonumber 
+\end{align}
+Gemessen wurden hier $419 \Omega$ was einer Abweichung von $1,1\%$ entspricht.
+
+\subsection{Mit Brücke 2}
+\begin{center}
+\begin{tikzpicture}[%show background rectangle,
+circuit ee IEC, circuit symbol lines/.style={draw,thick},
+font=\sffamily\upshape,
+>=latex % Voreinstellung für Pfeilspitzen
+]
+\matrix (S) [
+  matrix of nodes, nodes in empty cells,
+  inner sep=0pt, outer sep=-.5\pgflinewidth,
+  column sep=15mm, row sep = 7mm,
+  nodes={minimum width=0pt}
+  ]
+{
+  &&&&  \\
+  &&&&  \\
+  &&&&  \\
+  &&&&  \\
+  &&&&  \\
+};
+ 
+ 
+%Orientierungshilfen
+%\foreach \j in {1,...,5}
+% 	\foreach \k in {1,...,4}
+% 	{%
+%		\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
+%		\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
+%		\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
+%	};%
+ 
+
+%Bauteile
+\draw (S-4-1) to  [generator={name=Gen}](S-2-1);
+
+%\draw (S-1-2) to  [resistor={info=R$_\mathsf{1}$, name=Wstd}](S-3-2);
+\draw (S-1-3) to  [resistor={info=R$_\mathsf{1}$, name=Wstd}](S-3-3);
+\draw (S-3-3) to  [resistor={info=R$_\mathsf{4}$, name=Wstd}](S-5-3);
+\draw (S-3-2) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-5-2);
+\draw (S-3-4) to  [resistor={info=R$_\mathsf{5}$, name=Wstd}](S-5-4);
+
+
+%\draw (S-4-3) to  [ammeter ={name=AM1}](S-6-3);
+%\draw (S-2-2) to  [voltmeter ={name=VM1}](S-4-2);
+
+%\draw (S-1-1) to  [ammeter ={name=AMg}](S-1-2);
+
+%Spannungspfeile
+%Spannungspfeil der Quelle / des Voltmeters
+%\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_G}$}([xshift=-.5em]Gen.south west);
+
+%Strompfeile
+%\draw[IPfeil=-1em]([xshift=-.5em]AM1.north west) -- node [left]{I$\mathsf{_1}$}([xshift=-.5em]AM1.south west);
+
+%Leiterbahnen
+\draw (S-1-1) -- (S-2-1);
+\draw (S-1-1) -- (S-1-3);
+\draw (S-5-1) -- (S-5-4);
+\draw (S-5-1) -- (S-4-1);
+\draw (S-3-2) -- (S-3-4);
+ 
+\end{tikzpicture}
+\end{center}
+
+Bei gesetzter Brücke 2 sind $R_1$ sowie $R_{3..5} $ im Stromkreis zusammen geschaltet. $R_3$ bis $R_4$ sind parallel und $R_1$ ist in Reihe zu den anderen.
+
+\begin{align}
+R_G &= R_1 + (R_3 || R_4 || R_5) \nonumber \\
+	&= R_1 + \frac{1}{\frac{1}{R_3}+\frac{1}{R_4}+\frac{1}{R_5}} \nonumber \\
+	&= 150,9 \Omega + \frac{1}{\frac{1}{338,6\Omega}+\frac{1}{461,81\Omega}+\frac{1}{822\omega}} \nonumber \\
+	&= 308,75\Omega \nonumber
+\end{align}
+
+Gemessen wurden hier $304,8 \Omega$ was einer Abweichung von $1,2\%$ entspricht.
+
+\newpage
+
+\subsection{Mit beiden Brücken}
+\begin{center}
+\begin{tikzpicture}[%show background rectangle,
+circuit ee IEC, circuit symbol lines/.style={draw,thick},
+font=\sffamily\upshape,
+>=latex % Voreinstellung für Pfeilspitzen
+]
+\matrix (S) [
+  matrix of nodes, nodes in empty cells,
+  inner sep=0pt, outer sep=-.5\pgflinewidth,
+  column sep=15mm, row sep = 7mm,
+  nodes={minimum width=0pt}
+  ]
+{
+  &&&&  \\
+  &&&&  \\
+  &&&&  \\
+  &&&&  \\
+  &&&&  \\
+};
+ 
+ 
+%Orientierungshilfen
+%\foreach \j in {1,...,5}
+% 	\foreach \k in {1,...,4}
+% 	{%
+%		\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
+%		\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
+%		\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
+%	};%
+ 
+
+%Bauteile
+\draw (S-4-1) to  [generator={name=Gen}](S-2-1);
+
+\draw (S-1-2) to  [resistor={info=R$_\mathsf{1}$, name=Wstd}](S-3-2);
+\draw (S-1-3) to  [resistor={info=R$_\mathsf{2}$, name=Wstd}](S-3-3);
+\draw (S-3-3) to  [resistor={info=R$_\mathsf{4}$, name=Wstd}](S-5-3);
+\draw (S-3-2) to  [resistor={info=R$_\mathsf{3}$, name=Wstd}](S-5-2);
+\draw (S-3-4) to  [resistor={info=R$_\mathsf{5}$, name=Wstd}](S-5-4);
+
+
+%\draw (S-4-3) to  [ammeter ={name=AM1}](S-6-3);
+%\draw (S-2-2) to  [voltmeter ={name=VM1}](S-4-2);
+
+%\draw (S-1-1) to  [ammeter ={name=AMg}](S-1-2);
+
+%Spannungspfeile
+%Spannungspfeil der Quelle / des Voltmeters
+%\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_G}$}([xshift=-.5em]Gen.south west);
+
+%Strompfeile
+%\draw[IPfeil=-1em]([xshift=-.5em]AM1.north west) -- node [left]{I$\mathsf{_1}$}([xshift=-.5em]AM1.south west);
+
+%Leiterbahnen
+\draw (S-1-1) -- (S-2-1);
+\draw (S-1-1) -- (S-1-3);
+\draw (S-5-1) -- (S-5-4);
+\draw (S-5-1) -- (S-4-1);
+\draw (S-3-2) -- (S-3-4);
+ 
+\end{tikzpicture}
+\end{center}
+
+Wenn beide Brücken gesteckt sind, sind alle Widerstände im Stromkreis enthalten.
+\begin{align}
+R_G &= (R_1 || R_2) + (R_3 || R_4 || R_5) \nonumber \\
+	&= \frac{R_1 \cdot R_2}{R_1+R_2} + \frac{1}{\frac{1}{R_3}+\frac{1}{R_4}+\frac{1}{R_5}} \nonumber \\
+	&= \frac{151,6 \Omega \cdot 224,3 \Omega}{151,6 \Omega + 224,3 \Omega} + \frac{1}{\frac{1}{332,6 \Omega}+\frac{1}{468,1 \Omega}+\frac{1}{822 \Omega}}  \nonumber \\
+	&= 247,7 \Omega \nonumber
+\end{align}
+
+Gemessen wurden hier $244,6 \Omega$ was einer Abweichung von $1,3\%$ entspricht.
+
+%%%
+%%% end main document
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \appendix  %% include it, if something (bibliography, index, ...) follows below
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% bibliography
+%%%
+%%% available styles: abbrv, acm, alpha, apalike, ieeetr, plain, siam, unsrt
+%%%
+% \bibliographystyle{plain}
+
+%%% name of the bibliography file without .bib
+%%% e.g.: literatur.bib -> \bibliography{literatur}
+% \bibliography{FIXXME}
+
+\end{document}
+%%% }}}
+%%% END OF FILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Notice!
+%%% This file uses the outline-mode of emacs and the foldmethod of Vim.
+%%% Press 'zi' to unfold the file in Vim.
+%%% See ':help folding' for more information.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Local Variables:
+%% mode: outline-minor
+%% OPToutline-regexp: "%% .*"
+%% OPTeval: (hide-body)
+%% emerge-set-combine-versions-template: "%a\n%b\n"
+%% End:
+%% vim:foldmethod=marker
