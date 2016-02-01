@@ -230,7 +230,7 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 \author{Felix Schiller \\ Sebastian Littau \\ E1FS2}
 
 %%% date
-\date{Reutlingen, am \today{}}
+\date{Reutlingen, am 15.12.2015}
 
 % \publishers{}
 
@@ -435,7 +435,7 @@ Mit den Messgeräten, die mit den Widerständen in Reihe geschaltet sind können
 
 \subsection{Messwerte und Zusammenhänge}
 
-In der oben beschrieben Schaltung wurden die folgenden Ströme gemessen.
+In der oben beschrieben Schaltung wurden die folgenden Ströme gemessen:
 \begin{center}
   \begin{tabular}{ l | c | c | c | c | c}
     \hline
@@ -444,14 +444,13 @@ In der oben beschrieben Schaltung wurden die folgenden Ströme gemessen.
     \hline
   \end{tabular}
 \end{center}
-
-\textbf{blabla}
-
+Der Gesamtstrom, der durch die Schaltung fließt teilt sich entsprechend der Werte der einzelenn Widerstände auf.
 \begin{align}
 I_G &= I_1 + I_2 + I_3 + I_4 \nonumber \\
     &= 67mA + 45mA + 21,5mA + 12mA \nonumber \\
-    &= 145.5 mA \nonumber
+    &= 145,5 mA \nonumber
 \end{align}
+Der Strom $I_G$ enspricht der Summe der einzelnen Ströme $I_{1..4}$.\newline
 Die Abweichung zwischen dem gemessenen und dem errechneten Gesamtstrom ergibt sich aus den verschiedenen Ungenauigkeiten. 
 Die verschiedenen Messbereiche des verwendeten Unigor A43 haben verschiedene Innenwiderstände, die sich auf die gemessenen Werte auswirken. 
 Dazu kommen noch Ablesefehler auf der analogen Messskala.
@@ -564,7 +563,7 @@ Als Speisespannung wird $ U_G = 10V$ angelegt.
 Mit den parallel zu den Widerständen angeschlossenen Messgeräten können die Spannungen $U_{1..4}$ an den einzelnen Widerständen gemessen werden.
 
 \subsection{Messwerte und Zusammenhänge}
-In der oben beschrieben Schaltung wurden die folgenden Spannungen gemessen.
+In der oben beschrieben Schaltung wurden die folgenden Spannungen gemessen:
 \begin{center}
   \begin{tabular}{ l | c | c | c | c | c}
     \hline
@@ -576,12 +575,11 @@ In der oben beschrieben Schaltung wurden die folgenden Spannungen gemessen.
 An allen Widerständen liegt, bis auf Messfehler genau, die selbe Spannung an.
 \[U_G=U_1=U_2=U_3=U_4\]
 
-\textbf{blabla}
 
 \section{Erkenntnisse}
 
 \subsection{Wie verhalten sich die Ströme bei einer Parallelschaltung?}
-Der Gesamtstrom teilt sich auf alle Widerstände auf. Durch jeden Widerstand fließt der Strom $I_n=\frac{U_n}{R_n}$.
+Der Gesamtstrom teilt sich auf alle Widerstände auf. Durch jeden Widerstand fließt der Strom $I_n=\frac{U_G}{R_n}$.
 Durch alle Widerstände zusammen fließt ein Gesamtstrom der der Summe aller Einzelströme entspricht.
 \[I_G = I_1 + I_2 + I_3 + I_4\]
 
@@ -603,17 +601,16 @@ I_{G} & = I_1+I_2+I_3+I_4 \nonumber \\
 				  &= 0,0145 \frac{1}{\Omega} \nonumber\\
 \Rightarrow R_{ges} &= 69,44\Omega \nonumber
 \end{align}
-Da die an allen Widerständen anliegende Spannung gleich ist kann die gesamte Gleichung durch $U_G$ geteilt werden. Dadurch wird die Spannung aus der  Gleichung eliminiert. \\
+Da die an allen Widerständen anliegende Spannung gleich ist kann die gesamte Gleichung durch $U_G$ geteilt werden. Dadurch wird die Spannung aus der  Gleichung eliminiert.
 Mit eingesetzten Zahlen kommt man wieder auf den $ R_{ges}$, der schon oben ausgerechnet wurde.
 \newpage
-Da eine Berechnung über Kehrwerte oft sehr aufwendig ist wurde eine neue Größe eingeführt, der Leitwert $G$. Er wird in Siemens angegeben und entspricht dem Kehrwert des Widerstandes.
+Eine Berechnung über Kehrwerte ist oft sehr aufwendig. Deshalb wurde eine neue Größe eingeführt, der Leitwert $G$. Er wird in Siemens angegeben und entspricht dem Kehrwert des Widerstandes.
 \begin{align}
 \frac{1}{R_{ges}} &= \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \frac{1}{R_4} \nonumber \\
 \frac{1}{\frac{U_G}{I_G}} &= \frac{1}{\frac{U_1}{I_1}} + \frac{1}{\frac{U_2}{I_2}} + \frac{1}{\frac{U_3}{I_3}} + \frac{1}{\frac{U_4}{I_4}} \nonumber \\
 \frac{I_G}{U_G} &= \frac{I_1}{U_1} + \frac{I_2}{U_2} + \frac{I_3}{U_3} + \frac{I_4}{U_4} \nonumber \\
 G_{ges} &= G_1 + G_2 + G_3 + G_4 \nonumber 
 \end{align}
-
 Für zwei parallel geschaltete Widerstände, ein Fall, den man in vielen Schaltungen findet lässt sich eine vereinfachte Sonderformel finden.
 \begin{align}
 \frac{1}{R_{ges}} &= \frac{1}{R_1} + \frac{1}{R_2} \nonumber \\
@@ -622,8 +619,6 @@ Für zwei parallel geschaltete Widerstände, ein Fall, den man in vielen Schaltu
 \frac{1}{R_{ges}} &= \frac{R_2+R_1}{R_1 \cdot R_2} \nonumber \\
 \alignedbox{R_{ges} }{= \frac{R_2 \cdot R_1}{R_1 + R_2}} \nonumber 
 \end{align}
-
-
 
 
 \section{Anwenderschaltung}
@@ -695,9 +690,8 @@ Also ist ein Widerstand gesucht, der bei $12V$ angelegter Spannung $144mA$ Strom
 R_P &= \frac{U_{H_2}}{I_{R_P}} \nonumber \\
 R_P &= \frac{12V}{144mA} = 83,33 \Omega \nonumber 
 \end{align}
-Im Widerstand wird dann eine Leistung von $P_{R_P} = U \cdot I_{R_P} = 12V \cdot 144mA = 1,27W$ umgesetzt.
-
-Bei Glühfadenbruch der Lampe $H_1$ ist der Stromkreis unterbrochen. Es kann kein Strom mehr fließen und beide Lampen sind aus.
+Im Widerstand wird dann eine Leistung von $P_{R_P} = U \cdot I_{R_P} = 12V \cdot 144mA = 1,27W$ umgesetzt.\\
+Bei Glühfadenbruch der Lampe $H_1$ ist der Stromkreis unterbrochen. Es kann kein Strom mehr fließen und beide Lampen sind aus.\\
 Bei einem Glühfadenbruch der Lampe $H_2$ wird nur die Lampe $H_1$ etwas dunkler. Die folgenden Betrachtungen gelten nun:
 \[R_{neu} = R_{H_1} + R_P = 50 \Omega + 83,33 \Omega = 133,33 \Omega \]
 \[I_{neu} = \frac{U_G}{R_{neu}} = \frac{24V}{133,33 \Omega}=180mA \]

@@ -230,7 +230,7 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 \author{Felix Schiller \\ Sebastian Littau \\ E1FS2}
 
 %%% date
-\date{Reutlingen, am 15.12.2015}
+\date{Reutlingen, am \today{}}
 
 % \publishers{}
 
@@ -374,7 +374,7 @@ font=\sffamily\upshape,
 
 %Spannungspfeile
 %Spannungspfeil der Quelle / des Voltmeters
-\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_G}$}([xshift=-.5em]Gen.south west);
+\draw[UPfeil=-1em]([xshift=-.5em]Gen.north west) -- node [left]{U$\mathsf{_b}$}([xshift=-.5em]Gen.south west);
 \draw[UPfeil=-1em]([xshift=.5em]VM1.north east) -- node [right]{U$\mathsf{_1}$}([xshift=.5em]VM1.south east);
 \draw[UPfeil=-1em]([xshift=.5em]VM2.north east) -- node [right]{U$\mathsf{_2}$=U$\mathsf{_A}$}([xshift=.5em]VM2.south east);
 %\draw[UPfeil=-1em]([xshift=.5em]VM3.north east) -- node [right]{U$\mathsf{_3}$}([xshift=.5em]VM3.south east);
@@ -404,12 +404,13 @@ font=\sffamily\upshape,
 
 In der oben skizzierten Schaltung sind die Widerstände $R_{1}$  und $R_2$ in Reihe an die Spannungsquelle angeschlossen und bilden einen Spannungsteiler.
 Die Widerstandswerte betragen $ R_1 = 1k \Omega$ und $R_2 = 330 \Omega$. 
-Als Speisespannung wird $ U_G = 20V$ angelegt. 
+Als Speisespannung wird $ U_b = 20V$ angelegt. 
 Mit den Messgeräten, die parallel zu den Widerständen angeschlossen sind können die Spannugnen $U_{1}$ und $U_2$ gemessen werden. $I_G$ ist der Gesamtstrom durch die Schaltung.
 
 \subsubsection{Berechnung und Messung der Spannung an $R_2$}
 
 Die Ausgangsspannung an $R_2$ wurde zu \textbf{$4.97V$} gemessen.
+
 Die selbe Spannung kann über den Gesamtstrom $I_G$ in der Schaltung berechnet werden.
 \[ I_G = \frac{U_G}{R_G} = \frac{U_G}{R_1 + R_2}  \]
 \[ U_A = U_2 = R_2 \cdot \frac{U_G}{R_1 + R_2} =330\Omega \cdot \frac{20V}{1000\Omega+330\Omega} =4.96V \]
@@ -418,11 +419,10 @@ Alternativ kann die Ausgangsspannung über das Teilerverhältnis des Spannungste
 
 \subsubsection{Merksatz zum Spannungsteiler}
 
-Die Teilspannung $U_A$ verhält sich zur Gesamtspannung $U_G$ wie der Teilwiderstand $R_2$ zum Gesamtwiderstand $R_1+R_2$
-\[\frac{U_A}{U_G}=\frac{R_2}{R_1+R_2}\]
+Die Teilspannung $U_a$ verhält sich zur Gesamtspannung $U_G$ wie der Teilwiderstand $R_2$ zum Gesamtwiderstand $R_1+R_2$
 
 \subsection{Spannungsteiler belastet}
-\subsubsection{Schaltung mit belastetem Spannungsteiler}
+\subsection{Schaltung mit belastetem Spannungsteiler}
 
 \begin{center}
 \begin{tikzpicture}[%show background rectangle,
@@ -501,21 +501,21 @@ node[midway, right]{I$_\mathsf{L}$};
 \end{tikzpicture}
 \end{center}
 
-\subsubsection{Aufbau der Schaltung}
+\subsection{Aufbau der Schaltung}
 
-Zu den zwei in Reihe geschalteten Widerständen des Spannungsteilers kommt als Last der Widerstand $R_L$ dazu, der parallel zu $R_2$ geschalten wird. Der Gesamtstrom, der durch $R_1$ fließt teilt sich auf $R_2$ und $R_L$ auf.
+\textbf{bla bla blub}
 
 \subsubsection{Berechnung und Messung der Ausgangsspannung}
-In dieser Schaltung wurde eine Ausgangsspannung von \textbf{$2,34V$} gemessen. Rechnerisch ergibt sich die folgende Ausgangsspannung:
+In dieser Schaltung wurde eine Ausgangsspannung von \textbf{$99999V$} gemessen.
 \begin{align}
 U_2 &= U_G \cdot\frac{\frac{R_2 \cdot R_L}{R_2 + R_L}}{R_1 + frac{R_2 \cdot R_L}{R_2 + R_L}} \nonumber \\ 
 	&= 20V \cdot\frac{\frac{330\Omega \cdot 220\Omega}{330\Omega + 220\Omega}}{1000\Omega + \frac{330\Omega \cdot 220\Omega}{330\Omega + 220\Omega}} \nonumber \\
-	&= 2,33V \nonumber
+	&= 2,33V
 \end{align}
 
 \subsubsection{Wie ändert sich die Ausgangsspannung? Warum ändert sie sich?}
 
-Die Ausgangsspannung $U_2$ sinkt, da der Ersatzwiderstand aus $R_2$ und $R_L$ in Parallelschaltung kleiner ist als der ursprüngliche $R_2$.
+Die Ausgangsspannung $U_A$ sinkt, da der Ersatzwiderstand aus $R_2$ und $R_L$ kleiner ist als der ursprüngliche $R_2$.
 
 \subsection{Spannungsteiler mit veränderbarer Belastung}
 \subsubsection{Messschaltung}
@@ -545,12 +545,12 @@ font=\sffamily\upshape,
  
  
 %Orientierungshilfen
-%\foreach \j in {1,...,8}
-% \foreach \k in {1,...,4}{%
-%\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
-%\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
-%\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
-%};%
+\foreach \j in {1,...,8}
+ \foreach \k in {1,...,4}{%
+\node[text=lightgray] at (S-\j-\k){+}; % Orientierungshilfe +
+\node[red, left] at (S-\j-1){\j}; %Orientierungshilfe Zeilennummer
+\node[red, above] at (S-1-\k){\k}; %Orientierungshilfe Spaltennummer  
+};%
  
 
 %Bauteile
@@ -625,13 +625,8 @@ Die gemessenen Werte lassen sich in einem Diagramm darstellen.
 \includegraphics[scale=1]{belastungskennlinie.eps}
 \end{figure}
 
-\newpage
 
-\subsubsection{Auswertung der Belastungskennlinie}
-Die Ausgleichsgerade durch alle Messwerte, die gleichzeitig die Kennlinie ist lässt sich verlängern bis sie die X-Achse schneidet. Der Schnittpunkt stellt den maximalen Laststrom $I_{Lmax}$ dar. Grafisch kann er zu $I_{Lmax}=20mA$ ermittelt werden.
-Der maximale Laststrom tritt nur auf, wenn der Lastwiderstand auf 0 geht. Der Strom wird dann nur durch den ersten Widerstand des Spannungsteilers, $R_1$ begrenzt. 
-\[I_{LmaxR}=\frac{U_G}{R_1}=\frac{20V}{1000\Omega}=20mA\]
-Die Ausgangsspannung für einen bestimmten Laststrom lässt sich aus dem Diagramm ablesen. Bei $I_L=7,2mA$ liegt eine Ausgangsspannung von $U_L=3,1V$ an.
+
 
 %%%
 %%% end main document

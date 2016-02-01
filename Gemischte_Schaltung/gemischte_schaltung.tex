@@ -230,7 +230,7 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 \author{Felix Schiller \\ Sebastian Littau \\ E1FS2}
 
 %%% date
-\date{Reutlingen, am \today{}}
+\date{Reutlingen, am 15.12.2015}
 
 % \publishers{}
 
@@ -322,7 +322,7 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 %%% structure: \section \subsection \subsubsection \paragraph \subparagraph
 %%%
 \section{Messaufgabe}
-An einer gemischten Schaltung von 5 Widerständen soll durch Messung ermittelt werden, wie sich 
+An einer gemischten Schaltung von 5 Widerständen soll durch Messung ermittelt werden wie sich 
 \begin{enumerate}
 	\item die Ströme zwischen den einzelnen Bauteilen und 
 	\item die Spannungen an den einzelnen Bauteilen verhalten. 
@@ -407,7 +407,7 @@ font=\sffamily\upshape,
  
 \end{tikzpicture}
 \end{center}
-In der obigen Schaltung sind die folgenden Widerstände verbaut: $R_1 = 150\Omega, R_2 = 220\Omega, R_3=330\Omega, R_4=470\Omega$ und $R_5=820\Omega$.
+In der obigen Schaltung sind die  Widerstände $R_1 = 150\Omega, R_2 = 220\Omega, R_3=330\Omega, R_4=470\Omega$ und $R_5=820\Omega$ verbaut.
 Die Schaltung wird mit einer konstanten Speisespannung von $U_G=10V$ versorgt. 
 Mit einem Messgerät werden nacheinander die Spannungen an den Widerständen und die Ströme durch die Widerstände bei den vier möglichen Brückenkombinationen gemessen.
 
@@ -430,32 +430,24 @@ In der oben beschrieben Schaltung wurden die folgenden Ströme und Spannungen ge
     $U_3$ & 6,87 & 7,85 & 5,08 & 6,32 \\ \hline
     $U_4$ & 0    & 0    & 5,08 & 6,32 \\ \hline
     $U_5$ & 0,012 & 0,008 & 5,1 & 6,33 \\ \hline
-    \hline
   \end{tabular}
 \end{center}
-
 Aus den gemessenen Strömen und Spannungen kann man die Werte der einzelnen Widerstände ausrechnen.
-$R_{gem}$ ist mit der Widerstand Messfunktion des Fluke Multimeters gemessen.
+$R_{ges,gem}$ ist mit der Widerstandsmessfunktion des Fluke Multimeters gemessen.
 
 \begin{center}
   \begin{tabular}{ l | c | c | c | c }
     \hline
     $U_G=10V$   & ohne Brücken & mit Brücke 1 & mit Brücke 2 & mit beiden Brücken \\ \hline
-    $R_{gem}$ & 479    & 419    & 304,8 & 244,6 \\ \hline
+    $R_{ges,gem}$ & 479    & 419    & 304,8 & 244,6 \\ \hline
     $R_{1}$   & 150,24 & 149,28 & 150,9 & 151,6 \\ \hline
     $R_{2}$   & -      & 225,8  & -     & 224,3 \\ \hline
     $R_{3}$   & 327,14 & 334,04 & 338,6 & 332,6 \\ \hline
     $R_{4}$   & -      & -      & 468,1 & 468,1 \\ \hline
     $R_{5}$   & -      & -      & 822   & 822   \\ \hline
-    \hline
   \end{tabular}
 \end{center}
 
-\begin{align}
-I_G &= I_1 + I_2 + I_3 + I_4 \nonumber \\
-    &= 67mA + 45mA + 21,5mA + 12mA \nonumber \\
-    &= 145.5 mA \nonumber
-\end{align}
 Die Abweichung zwischen dem gemessenen und dem errechneten Gesamtstrom ergibt sich aus den verschiedenen Ungenauigkeiten. 
 Die verschiedenen Messbereiche des verwendeten Unigor A43 haben verschiedene Innenwiderstände, die sich auf die gemessenen Werte auswirken. 
 Dazu kommen noch Ablesefehler auf der analogen Messskala.
@@ -520,7 +512,6 @@ font=\sffamily\upshape,
  
 \end{tikzpicture}
 \end{center}
-
 Ohne die beiden Brücken schnurrt die Schaltung zu einer Reihenschaltung aus $R_1$ und $R_3$ zusammen. Das Potential an beiden Seiten von $R_4$ und $R_5$ ist gleich groß. Die Widerstände sind zwar in einem Kreis gesteckt, es fließt aber kein Strom, da kein Potentialunterschied besteht.
 \begin{align}
 R_G &= R_1 + R_3  \nonumber \\
@@ -598,7 +589,7 @@ R_G &= \frac{R_1 \cdot R_2}{R_1+R_2} + R_3 \nonumber \\
 \end{align}
 Gemessen wurden hier $419 \Omega$ was einer Abweichung von $1,1\%$ entspricht.
 
-\subsection{Mit Brücke 2}
+\subsubsection{Mit Brücke 2}
 \begin{center}
 \begin{tikzpicture}[%show background rectangle,
 circuit ee IEC, circuit symbol lines/.style={draw,thick},
@@ -661,7 +652,6 @@ font=\sffamily\upshape,
  
 \end{tikzpicture}
 \end{center}
-
 Bei gesetzter Brücke 2 sind $R_1$ sowie $R_{3..5} $ im Stromkreis zusammen geschaltet. $R_3$ bis $R_4$ sind parallel und $R_1$ ist in Reihe zu den anderen.
 
 \begin{align}
@@ -670,12 +660,11 @@ R_G &= R_1 + (R_3 || R_4 || R_5) \nonumber \\
 	&= 150,9 \Omega + \frac{1}{\frac{1}{338,6\Omega}+\frac{1}{461,81\Omega}+\frac{1}{822\omega}} \nonumber \\
 	&= 308,75\Omega \nonumber
 \end{align}
-
 Gemessen wurden hier $304,8 \Omega$ was einer Abweichung von $1,2\%$ entspricht.
 
 \newpage
 
-\subsection{Mit beiden Brücken}
+\subsubsection{Mit beiden Brücken}
 \begin{center}
 \begin{tikzpicture}[%show background rectangle,
 circuit ee IEC, circuit symbol lines/.style={draw,thick},
@@ -738,7 +727,6 @@ font=\sffamily\upshape,
  
 \end{tikzpicture}
 \end{center}
-
 Wenn beide Brücken gesteckt sind, sind alle Widerstände im Stromkreis enthalten.
 \begin{align}
 R_G &= (R_1 || R_2) + (R_3 || R_4 || R_5) \nonumber \\
@@ -746,7 +734,6 @@ R_G &= (R_1 || R_2) + (R_3 || R_4 || R_5) \nonumber \\
 	&= \frac{151,6 \Omega \cdot 224,3 \Omega}{151,6 \Omega + 224,3 \Omega} + \frac{1}{\frac{1}{332,6 \Omega}+\frac{1}{468,1 \Omega}+\frac{1}{822 \Omega}}  \nonumber \\
 	&= 247,7 \Omega \nonumber
 \end{align}
-
 Gemessen wurden hier $244,6 \Omega$ was einer Abweichung von $1,3\%$ entspricht.
 
 %%%
