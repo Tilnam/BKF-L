@@ -1,0 +1,9 @@
+\contentsline {section}{\numberline {1}Messaufgabe}{2}{section.1}
+\contentsline {section}{\numberline {2}Messung: Spannungsteiler unbelastet}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Messschaltung}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Aufbau der Schaltung}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Messung der Spannung bei unbelastetem Spannungsteiler}{3}{subsection.2.3}
+\contentsline {section}{\numberline {3}Messung: Spannungsteiler belastet}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Messung der Spannung bei belastetem Spannungsteiler}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Belastungskennlinie}{3}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Auswertung der Belastungskennlinie}{3}{subsection.3.3}
