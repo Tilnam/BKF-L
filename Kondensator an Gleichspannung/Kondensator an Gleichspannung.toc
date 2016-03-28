@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}Messaufgabe}{2}{section.1}
+\contentsline {section}{\numberline {2}Durchf\IeC {\"u}hrung der Messung}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Spannungsmessung am Kondensator}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Messschaltung}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Aufbau der Schaltung}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Laden und entladen des Kondensators}{3}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Messwerttabelle}{4}{subsection.2.5}
+\contentsline {section}{\numberline {3}Grafische Auswertung}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Theoretische und gemessene Kennlinie}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Kurvenauswertung}{6}{subsection.3.2}

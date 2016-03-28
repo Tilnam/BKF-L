@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="950"
+   height="247"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   version="1.0"
+   sodipodi:docname="Kondensatoren.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;">
+      <path
+         id="path3276"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lend"
+       style="overflow:visible;">
+      <path
+         id="path3270"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) rotate(180) translate(1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;">
+      <path
+         id="path3252"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lstart"
+       style="overflow:visible">
+      <path
+         id="path3249"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
+         transform="scale(0.8) translate(12.5,0)" />
+    </marker>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <inkscape:perspective
+       id="perspective2390"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.81368421"
+     inkscape:cx="475"
+     inkscape:cy="123.5"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     objecttolerance="5"
+     inkscape:snap-bbox="true"
+     gridtolerance="5"
+     guidetolerance="5"
+     inkscape:window-width="1280"
+     inkscape:window-height="944"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3170"
+       visible="true"
+       enabled="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 61,39 L 58,39 L 58,87 L 22,87 L 22,97 L 97,97 L 97,87 L 61,87 L 61,39 z"
+       id="path3168"
+       sodipodi:nodetypes="ccccccccc" />
+    <path
+       style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="M 22,106 L 97,106 L 97,116 L 61,116 L 61,160 L 58,160 L 58,116 L 22,116 L 22,106 z"
+       id="path3172"
+       sodipodi:nodetypes="ccccccccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="1.2333984"
+       y="184.67578"
+       id="text3178"><tspan
+         sodipodi:role="line"
+         id="tspan3180"
+         x="1.2333984"
+         y="184.67578">Kondensator</tspan></text>
+    <g
+       id="g7262">
+      <path
+         sodipodi:nodetypes="cccccccccccccc"
+         id="path3182"
+         d="M 217,39 L 217,83 L 181,83 L 181,97 L 256,97 L 256,83 L 220,83 L 220,39 L 217,39 z M 184,86 L 253,86 L 253,94 L 184,94 L 184,86 z"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccccccccc"
+         id="path3189"
+         d="M 181,106 L 181,119 L 217,119 L 217,160 L 220,160 L 220,119 L 256,119 L 256,106 L 181,106 z"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         id="path3193"
+         d="M 241,132 L 253,132"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+      <g
+         id="g7258">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+           d="M 239,68 L 253,68"
+           id="path3195"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+           d="M 246,61 L 246,75"
+           id="path3197"
+           sodipodi:nodetypes="cc" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="217.7207"
+       y="184.67578"
+       id="text3199"><tspan
+         sodipodi:role="line"
+         id="tspan3201"
+         x="217.7207"
+         y="184.67578">Elektrolyt-</tspan><tspan
+         sodipodi:role="line"
+         x="217.7207"
+         y="207.17578"
+         id="tspan3203">kondensator</tspan></text>
+    <g
+       id="g7254">
+      <path
+         sodipodi:nodetypes="cccccccccccccc"
+         id="path3205"
+         d="M 376,39 L 376,83 L 340,83 L 340,97 L 415,97 L 415,83 L 379,83 L 379,39 L 376,39 z M 343,86 L 412,86 L 412,94 L 343,94 L 343,86 z"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccccccccccccc"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 379,163 L 379,119 L 415,119 L 415,105 L 340,105 L 340,119 L 376,119 L 376,163 L 379,163 z M 412,116 L 343,116 L 343,108 L 412,108 L 412,116 z"
+         id="path3210" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="376.66211"
+       y="184.67578"
+       id="text3212"><tspan
+         sodipodi:role="line"
+         id="tspan3214"
+         x="376.66211"
+         y="184.67578">Bipolarer</tspan><tspan
+         sodipodi:role="line"
+         x="376.66211"
+         y="207.17578"
+         id="tspan3216">Elektrolyt-</tspan><tspan
+         sodipodi:role="line"
+         x="376.66211"
+         y="229.67578"
+         id="tspan3218">kondensator</tspan></text>
+    <g
+       id="g7246">
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 531,39 L 528,39 L 528,87 L 494,87 L 494,97 L 569,97 L 569,87 L 531,87 L 531,39 z"
+         id="path3220"
+         sodipodi:nodetypes="ccccccccc" />
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 494,106 L 569,106 L 569,116 L 531,116 L 531,160 L 528,160 L 528,116 L 494,116 L 494,106 z"
+         id="path3222"
+         sodipodi:nodetypes="ccccccccc" />
+      <g
+         transform="translate(-11.51786,0.5357142)"
+         id="g3228">
+        <g
+           id="g3232">
+          <path
+             sodipodi:nodetypes="cc"
+             id="path3224"
+             d="M 491.51786,157.53571 L 590,47"
+             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+          <path
+             sodipodi:nodetypes="cc"
+             id="path3226"
+             d="M 583,40 L 597.58929,54"
+             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        </g>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="529.52148"
+       y="184.67578"
+       id="text3236"><tspan
+         sodipodi:role="line"
+         id="tspan3238"
+         x="529.52148"
+         y="184.67578">Trimmer</tspan></text>
+    <g
+       id="g7241">
+      <path
+         sodipodi:nodetypes="ccccccccc"
+         id="path3240"
+         d="M 697,39 L 694,39 L 694,87 L 660,87 L 660,97 L 735,97 L 735,87 L 697,87 L 697,39 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccccccccc"
+         id="path3242"
+         d="M 660,106 L 735,106 L 735,116 L 697,116 L 697,160 L 694,160 L 694,116 L 660,116 L 660,106 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         id="path3244"
+         d="M 651,146.46429 L 649,144 L 722,69 L 719,66 L 747,45 L 727,74 L 724,71 L 651,146.46429 z"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="694.77734"
+       y="184.67578"
+       id="text7210"><tspan
+         sodipodi:role="line"
+         id="tspan7212"
+         x="694.77734"
+         y="184.67578">Drehkondensator</tspan></text>
+    <g
+       id="g7224">
+      <path
+         sodipodi:nodetypes="ccccccccccccc"
+         id="path7214"
+         d="M 786,99 L 824,99 L 824,95 L 901,95 L 901,99 L 939,99 L 939,102 L 901,102 L 901,106 L 824,106 L 824,102 L 786,102 L 786,99 z"
+         style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+      <rect
+         y="83"
+         x="824"
+         height="7"
+         width="77"
+         id="rect7216"
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect7218"
+         width="77"
+         height="7"
+         x="824"
+         y="111" />
+      <path
+         id="path7220"
+         d="M 860.5,47.035714 L 860.5,82.5"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3, 3;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3, 3;stroke-dashoffset:0;stroke-opacity:1"
+         d="M 860.5,121 L 860.5,156.46429"
+         id="path7222" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="860.4873"
+       y="184.67578"
+       id="text7231"><tspan
+         sodipodi:role="line"
+         id="tspan7233"
+         x="860.4873"
+         y="184.67578">Durchführungs-</tspan><tspan
+         sodipodi:role="line"
+         x="860.4873"
+         y="207.17578"
+         id="tspan7237">kondensator</tspan></text>
+  </g>
+</svg>
