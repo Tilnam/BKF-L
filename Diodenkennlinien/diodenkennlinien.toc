@@ -1,0 +1,9 @@
+\contentsline {section}{\numberline {1}Aufnahme der Kennlinie im Durchlassbereich}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Messchaltung zur Aufnahme der Durchlasskennlinie}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Aufbau der Schaltung}{2}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Messwerttabelle}{3}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Belastungskennlinie}{3}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Ermittlung der Schleusenspannung $U_{TO}$}{4}{subsection.1.5}
+\contentsline {subsection}{\numberline {1.6}Warum wird die Stromfehlerschaltung angewendet?}{4}{subsection.1.6}
+\contentsline {subsection}{\numberline {1.7}Worwiderstand f\IeC {\"u}r drittes Bremslicht eines PKWs}{4}{subsection.1.7}
+\contentsline {subsection}{\numberline {1.8}Verlustleistung am Vorwiderstand}{4}{subsection.1.8}
