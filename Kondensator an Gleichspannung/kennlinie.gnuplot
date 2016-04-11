@@ -19,6 +19,12 @@ g(x) = 16*(1-e**(-x/13.68))
 h(x) = 8*(e**(-(x-90)/13.68))
 i(x) = 16*(e**(-(x-90)/13.68))
 
+set arrow from (13.68*5),0 to (13.68*5),16 nohead lc rgb "red"
+set label "5·{/Symbol t}" at (13.68*5.2),12
+
+set label "5·{/Symbol t}" at 90+(13.68*5.2),6
+set arrow from 90+(13.68*5),0 to 90+(13.68*5),8 nohead lc rgb "red"
+
 set term eps
 set output 'kennlinie.eps'
 set termoption enhanced

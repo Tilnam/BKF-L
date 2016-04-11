@@ -400,14 +400,11 @@ font=\sffamily\upshape,
 
 \subsection{Aufbau der Schaltung}
 
-Mithilfe der obigen Schaltung wird die Schleusenspannung für zwei gegebene Dioden bestimmt. Hierzu wird die entsprechende Diode mit einem in Reihe vorgeschalteten Schutzwiderstand versehen. Die Größe des Schutzwiderstandes wird berechnet, indem man mit der gegebenen maximalen Generatorspannung von 30V und der jeweiligen maximalen Strombelastung der Diode sowie eines angenommenen Schwellwertes von 1V bzw 2V unter Berücksichtigung der Gesetzmäßigkeiten der Reihenschaltung den benötigten Vorwiderstand berechnet.
-
+Mithilfe der obigen Schaltung wird die Schleusenspannung für zwei gegebene Dioden bestimmt. Hierzu wird die entsprechende Diode mit einem in Reihe vorgeschalteten Schutzwiderstand versehen. Die Größe des Schutzwiderstandes wird berechnet, indem man mit der gegebenen maximalen Generatorspannung von 30V und der jeweiligen maximalen Strombelastung der Diode sowie eines angenommenen Schwellwertes von 1V bzw 2V unter Berücksichtigung der Gesetzmäßigkeiten der Reihenschaltung den benötigten Vorwiderstand berechnet. \newline
 Für die Diode 1N4007 ergibt sich:
 \[R_{S,Diode}=\frac{30V-0.93V}{100mA}=292\Omega \Rightarrow 270\Omega\]
-
 Für die rote Leuchtdiode ergibt sich:
 \[R_{S,LED}=\frac{30V-2V}{10mA}=2800\Omega \Rightarrow 2.7k\Omega\]
-
 Es wird der nächstkleinere zur Verfügung stehende Widerstand ausgewählt. Damit wird erreicht, dass die angenommenen bzw. vorgegebenen Werte nicht zu weit überschritten werden.
 
 \subsection{Messwerttabelle}
@@ -447,32 +444,23 @@ Die gemessenen Werte lassen sich in einem Diagramm darstellen.
 
 \subsection{Ermittlung der Schleusenspannung $U_{TO}$}
 
-Die Schleusenspannung wird grafisch ermittelt, indem eine Gerade orthogonal an den Punkt der Belastungskennlinie angelegt wird, in welchem Sie die größte Steigung hat.
-Der Schnittpunkt mit der x-Achse ergibt dann die Schleusenspannung.
-
-Durch dieses Verfahren ergibt sich für die Diode 1N4007 eine Schleusenspannung von ca. 0,7V, bei der roten LED eine Schleusenspannung von ca. 1,85V
+Die Schleusenspannung wird grafisch ermittelt, indem eine Gerade tangential an den Punkt der Belastungskennlinie angelegt wird, in welchem Sie die größte Steigung hat. Der Schnittpunkt mit der x-Achse ergibt dann die Schleusenspannung.
+Durch dieses Verfahren ergibt sich für die Diode 1N4007 eine Schleusenspannung von ca. 0.7V, bei der roten LED eine Schleusenspannung von ca. 1.85V
 
 \subsection{Vorwiderstand für drittes Bremslicht eines PKWs}
 
-Gegeben sind 6 identische LEDs mit jeweils einem Strombedarf von $I_F$ = 15mA und einer Schleusenspannung von $U_TO$ = 2V.
-
-Die anliegende Versorgungsspannung ist mit $U_G$ = 13,4V angegeben.
-
-Wir entscheiden uns dazu, die Dioden in Reihe zu schalten, demnach ergibt sich aufgrund der Gegebenheiten einer Reihenschaltung ein Gesamtspannungsabfall von $U_Diodenreihe$ = 6 * 2V = 12V. Somit muss ein Vorwiderstand gewählt werden, an dem exakt 1,4 Volt abfallen. Die 15mA die jede Diode benötigt bedeuten, dass auch am Widerstand 15mA anliegen, da in einer Reihenschaltung überall die gleiche Menge an Strom fließt. Somit ergibt sich für Den Vorwiderstand:
-
-$R_{S,Diode}=\frac{1,4V}{0,015A}=93,3333\Omega$
-
+Gegeben sind 6 identische LEDs mit jeweils einem Strombedarf von $I_F = 15mA$ und einer Schleusenspannung von $U_{TO} = 2V$.
+Die anliegende Versorgungsspannung ist mit $U_G = 13.4V$ angegeben.
+Wir entscheiden uns dazu, die Dioden in Reihe zu schalten, demnach ergibt sich aufgrund der Gegebenheiten einer Reihenschaltung ein Gesamtspannungsabfall von $U_{Diodenreihe} = 6 \cdot 2V = 12V$. Somit muss ein Vorwiderstand gewählt werden, an dem exakt 1,4 Volt abfallen. Die 15mA die jede Diode benötigt bedeuten, dass auch am Widerstand 15mA anliegen, da in einer Reihenschaltung überall die gleiche Menge an Strom fließt. Somit ergibt sich für den Vorwiderstand:
+\[R_{S,Diode}=\frac{1,4V}{0,015A}=93,3333\Omega\]
 Es muss ein Vorwiderstand mit $93,3333\Omega$ gewählt werden.
 
 \subsection{Verlustleistung am Vorwiderstand}
 
 Die Verlustleistung am Vorwiderstand wird mithilfe der allgemeinen Formel für die Leistung berechnet.
-
-Es gilt P = U*I.
-
-In unserem Fall also P = 1,4V * 15 mA = 21 mW.
-
-Die Verlustleistung an unserem Vorwiderstand beträgt also 21 mW.
+Es gilt \[P = U\cdotI\]
+In unserem Fall also \[P = 1.4V \cdot 15 mA = 21 mW\]
+Die Verlustleistung an unserem Vorwiderstand beträgt $21 mW$.
 
 %%%
 %%% end main document
