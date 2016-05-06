@@ -1,0 +1,31 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{circuits.ee.IEC}
+%circuits,circuits.logic.US,circuits.logic.IEC}%circuits.ee,circuits.ee.US,}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}[scale=1,circuit ee IEC]
+%\tikzset{circuit declare symbol=transistor} % possible to specify new anchors?
+%\tikzset{set transistor graphic=transistor IEC graphic};
+\draw (0,2) to [transistor ee] (2,2);
+\node[transistor ee,point right] (T1) at (1,0) {}; % to path doesn't connect to input and output anchors...
+%\draw (0,0) -- (T1.input) (T1.output) -- (2,0) (T1.base) -- (1,-1)
+%  (T1.base) node[below right]{Base}
+%  (T1.collector) node[above left]{Collector}
+%  (T1.emitter) node[above right]{Emitter};
+\node[transistor ee,point down] (T2) at (1,-3) {};
+% how to reuse most of bipolar for FET graphic?
+%\draw (0,0) -- (T1.input) (T1.output) -- (2,0) (T1.base) -- (1,-1)
+%  (T2.gate) node[left]{Gate}
+%  (T2.gate source) node[left]{Gate Source}
+%  (T2.gate drain) node[left]{Gate Drain}
+%  (T2.source) node[right]{Source}
+%  (T2.drain) node[right]{Drain};
+\end{tikzpicture}
+
+\end{document}
