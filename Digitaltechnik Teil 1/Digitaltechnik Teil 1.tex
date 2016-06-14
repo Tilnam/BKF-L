@@ -598,18 +598,17 @@ Die Schalteräquivalente stellen diese Schaltungen dar. Etwas spannender ist es 
 \begin{tikzpicture}[circuit logic IEC]
 \matrix[column sep=7mm]
 {
-\node (i0) {};	& 							& 							& &\\
-				& 							& 							& &\\
-\node (i1) {};	& \node [not gate](n1){};	& \node [and gate] (a1) {}; & &\\
-				& 							&							& \node [or gate] (b) {}; & \node (o) {Q}\\
-\node (i2) {};	& \node [not gate](n2){}; 	& \node [and gate] (a2) {};	& &\\
-				& 							&							& &\\
-\node (i3) {};	& 							&							& &\\
+\node (i0) {};	& 							& 							& 							& \\
+				& 							& 							& 							& \\
+\node (i1) {};	& \node [not gate](n1){};	& \node [and gate] (a1) {}; & 							& \\
+				& 							&							& \node [or gate] (b) {}; 	& \node (o) {Q};\\
+\node (i2) {};	& \node [not gate](n2){}; 	& \node [and gate] (a2) {};	& 							&\\
+				& 							&							& 							&\\
+\node (i3) {};	& 							&							& 							&\\
 };
 \draw (i0.east) -- ++(right:17mm) |- (a1.input 1);
 \draw (i1.east) -- ++(right:3mm) |- (n1.input);
-\draw (n1.output) -- ++(right:3mm) |- (a1.input2);
-
+\draw (n1.output) -- ++(right:3mm) |- (a1.input 2);
 \draw (i2.east) -- ++(right:3mm) |- (n2.input);
 \draw (n2.output) -- ++(right:3mm) |- (a2.input 1);
 \draw (i3.east) -- ++(right:17mm) |- (a2.input 2);
