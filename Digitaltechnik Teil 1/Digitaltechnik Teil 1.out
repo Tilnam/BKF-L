@@ -1,5 +1,7 @@
-\BOOKMARK [1][-]{section.1}{Messaufgabe}{}% 1
-\BOOKMARK [1][-]{section.2}{Untersuchung der Bausteine}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Messschaltung}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Beispielaufbau XOR}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Bausteine mit mehreren Eing\344ngen}{}% 5
+\BOOKMARK [1][-]{section.1}{Untersuchung der Bausteine}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Beispielaufbau XOR}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{Bausteine mit mehreren Eing\344ngen}{}% 3
+\BOOKMARK [1][-]{section.3}{ODER-Bausteine mit mehreren Eing\344ngen}{}% 4
+\BOOKMARK [1][-]{section.4}{Alarmmelder}{}% 5
+\BOOKMARK [1][-]{section.5}{Lampensteuerung}{}% 6
+\BOOKMARK [1][-]{section.6}{\334berpr\374fung und Aufbau einer Schaltung}{}% 7

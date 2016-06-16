@@ -338,13 +338,11 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 %%% begin main document
 %%% structure: \section \subsection \subsubsection \paragraph \subparagraph
 %%%
-\section{Messaufgabe}
+\section*{Messaufgabe}
 Die verschiedenen Logischen Grundbausteine UND, ODER, NICHT, NAND und NOR sollen auf ihre Funktionsweise untersucht werden.
 
 \begin{landscape}
 \section{Untersuchung der Bausteine}
-
-\subsection{Messschaltung}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular}{r | l | l | l | l }
 Typ & NOT & AND & OR & NAND \\ \hline
@@ -594,35 +592,345 @@ Schalteräquivalent &
 \subsection{Beispielaufbau XOR}
 Um die Schaltfunktion der einzelnen Bausteine überprüfen und die Wahrheitstabellen ausfüllen zu können lassen sich eine vielzahl einfacher Schaltungen aufbauen.
 Die Schalteräquivalente stellen diese Schaltungen dar. Etwas spannender ist es das Exklusiv Oder aus einzelnen Invertieren, AND-Gattern und einem OR-Gatter aufzubauen.
-\begin{center}
+\begin{figure}[!ht]
+\centering
 \begin{tikzpicture}[circuit logic IEC]
 \matrix[column sep=7mm]
 {
 \node (i0) {};	& 							& 							& 							& \\
 				& 							& 							& 							& \\
 \node (i1) {};	& \node [not gate](n1){};	& \node [and gate] (a1) {}; & 							& \\
-				& 							&							& \node [or gate] (b) {}; 	& \node (o) {Q};\\
+				& 							&							& \node [or gate] (b) {}; 	& \node (o) {};\\
 \node (i2) {};	& \node [not gate](n2){}; 	& \node [and gate] (a2) {};	& 							&\\
 				& 							&							& 							&\\
 \node (i3) {};	& 							&							& 							&\\
 };
-\draw (i0.east) -- ++(right:17mm) |- (a1.input 1);
-\draw (i1.east) -- ++(right:3mm) |- (n1.input);
+\draw ([xshift=-3mm]i0.east) -- ++(right:20mm) |- (a1.input 1);
+\draw ([xshift=3mm]i1.east) -- ++(right:3mm) |- (n1.input);
 \draw (n1.output) -- ++(right:3mm) |- (a1.input 2);
-\draw (i2.east) -- ++(right:3mm) |- (n2.input);
+\draw ([xshift=-3mm]i2.east) -- ++(right:3mm) |- (n2.input);
 \draw (n2.output) -- ++(right:3mm) |- (a2.input 1);
-\draw (i3.east) -- ++(right:17mm) |- (a2.input 2);
+\draw ([xshift=3mm]i3.east) -- ++(right:14mm) |- (a2.input 2);
+
+\draw ([xshift=3mm, yshift=10mm]i1.east) node[anchor=south] {$E_2$} -- ([xshift=3mm]i3.east);
+
+\draw ([xshift=-3mm, yshift=3.8mm]i0.east) node[anchor=south] {$E_1$} -- ([xshift=-3mm]i2.east);
 
 \draw (a1.output) -- ++(right:3mm) |- (b.input 1);
 \draw (a2.output) -- ++(right:3mm) |- (b.input 2);
 
-\draw (b.output) -- ++(right:3mm) |- (o.east);
+\draw (b.output) -- ++(right:3mm) |- (o.east) node[anchor=west] {$Q_1$};
 
 \end{tikzpicture}
-\end{center}
+\caption{XOR aus diskreten Bauteilen}
+\end{figure}
 
 \section{Bausteine mit mehreren Eingängen}
+In der Praxis müssen oft mehrere Signale mit UND bzw. ODER verknüpft werden. Nicht immer stehen Bausteine mit der erforderlichen Anzahl an Eingängen zur Verfügung. Durch Verschaltung einzelner Gatter mit zwei Eingängen können aber relativ einfach mehrere Signal addiert, bzw. verodert werden.
 
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[circuit logic IEC]
+\matrix[column sep=7mm]
+{
+
+ \node [and gate] (a1) {};  & \\
+ 							& \node [and gate] (b) {}; \\
+ \node [and gate] (a2) {};	& \\
+};
+\draw ([xshift=-5mm]a1.input 1) node[anchor=south east] {$E_1$} -- (a1.input 1);
+\draw ([xshift=-5mm]a1.input 2) node[anchor=north east] {$E_2$}-- (a1.input 2);
+\draw ([xshift=-5mm]a2.input 1) node[anchor=south east] {$E_3$} -- (a2.input 1);
+\draw ([xshift=-5mm]a2.input 2) node[anchor=north east] {$E_4$}-- (a2.input 2);
+
+
+\draw (a1.output) -- ++(right:3mm) |- (b.input 1);
+\draw (a2.output) -- ++(right:3mm) |- (b.input 2);
+
+\draw (b.output) -- ([xshift=+5mm]b.output) node[anchor=west] {$Q_1$};
+\end{tikzpicture}
+\caption{UND mit vier Eingängen}
+\end{figure} 
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[circuit logic IEC]
+\matrix[column sep=7mm]
+{
+
+ \node [or gate] (a1) {};  & \\
+ 							& \node [or gate] (b) {}; \\
+ \node [or gate] (a2) {};	& \\
+};
+\draw ([xshift=-5mm]a1.input 1) node[anchor=south east] {$E_1$} -- (a1.input 1);
+\draw ([xshift=-5mm]a1.input 2) node[anchor=north east] {$E_2$}-- (a1.input 2);
+\draw ([xshift=-5mm]a2.input 1) node[anchor=south east] {$E_3$} -- (a2.input 1);
+\draw ([xshift=-5mm]a2.input 2) node[anchor=north east] {$E_4$}-- (a2.input 2);
+
+
+\draw (a1.output) -- ++(right:3mm) |- (b.input 1);
+\draw (a2.output) -- ++(right:3mm) |- (b.input 2);
+
+\draw (b.output) -- ([xshift=+5mm]b.output) node[anchor=west] {$Q_1$};
+
+\end{tikzpicture}
+\caption{OR mit vier Eingängen}
+\end{figure} 
+
+\section{ODER-Bausteine mit mehreren Eingängen}
+Nicht beschaltete Eingänge an ODER-Bausteinen können dazu führen, dass falsche Ergebnisse am Ausgang anliegen. Das ODER gibt als Ausgangspegel ein HIGH aus sobald an einem der Eingänge ein HIGH-Pegel erkannt wird. Ist einer der Eingänge mit keinem Signal verbunden ist das anliegende Potential undefiniert und kann über die Grenze des HIGH Pegels hinaus steigen. Als Lösung für dieses Problem werden alle nicht benötigten Eingänge über einen Pull-Down-Widerstand von $1.5-3k\Omega$ nach Ground fest auf den Pegel LOW gezogen.
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[circuit logic IEC, circuit ee IEC]
+\node [or gate,inputs={n,n,n,n,n}] (o) {};  
+\foreach \a in {1,...,4}
+{
+	\draw (o.input \a -| -1,0) -- (o.input \a);
+}
+
+\draw (o.input 5 -| -.5,0) -- (o.input 5);
+\draw (o.input 5 -| -.7,0) to [resistor={info=$R_1$}, name=Wstd1] (o.input 5 -| -.5,-1);
+
+\draw (o.output) -- ([xshift=+5mm]o.output) node[anchor=west] {$Q_1$};
+
+\end{tikzpicture}
+\caption{OR mit Pull-Down Widerstand TO DO!}
+\end{figure} 
+
+\section*{Übungsaufgaben}
+\section{Alarmmelder}
+Ein Alarmmelder soll die folgende Funktionsgleichung erfüllen:
+\[Q=(\overline{A} \land B \land C ) \lor (A \land \overline{B} \land \overline{C}) \lor (A \land \overline{B} \land C) \lor (A \land B \land C)\]
+Die Funktionsgleichung lässt sich in die folgende Schaltung aus UND und ODER-Bausteinen überführen.
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[circuit logic IEC, circuit ee IEC]
+\matrix[column sep=7mm]
+{
+\node (i0) {};	& 											& \\
+\node (i1) {};	& \node [and gate,inputs={inn}](a1){};	& \\
+\node (i2) {};	& 											& \\
+\node (i3) {};	& 											& \\
+\node (i4) {};	& \node [and gate,inputs={nii}](a2){}; 	& \\
+\node (i5) {};	& 											& \node [or gate,inputs={n,n,n,n}] (o) {};	\\
+\node (i6) {};	& 											& \\
+\node (i7) {};	& \node [and gate,inputs={nin}](a3){};	& \\
+\node (i8) {};	& 											& \\
+\node (i9) {};	& 											& \\
+\node (i10) {};	& \node [and gate,inputs={nnn}](a4){};	& \\
+\node (i11) {};	& 											& \\
+};
+
+\node [contact] at ([xshift=-9mm]i0.east) {};
+\node [contact] at ([xshift=-9mm]i3.east) {};
+\node [contact] at ([xshift=-9mm]i6.east) {};
+\node [contact] at ([xshift=-9mm]i6.east) {};
+\node [contact] at ([xshift=-9mm]i9.east) {};
+
+\node [contact] at ([xshift=-3mm]i1.east) {};
+\node [contact] at ([xshift=-3mm]i4.east) {};
+\node [contact] at ([xshift=-3mm]i7.east) {};
+\node [contact] at ([xshift=-3mm]i10.east) {};
+
+\node [contact] at ([xshift=3mm]i2.east) {};
+\node [contact] at ([xshift=3mm]i5.east) {};
+\node [contact] at ([xshift=3mm]i8.east) {};
+\node [contact] at ([xshift=3mm]i11.east) {};
+
+\draw ([xshift=-9mm]i0.east) -- ++(right:14mm) |- (a1.input 1);
+\draw ([xshift=-3mm]i1.east) -- ++(right:2mm) |- (a1.input 2);
+\draw ([xshift=3mm]i2.east) -- ++(right:2mm) |- (a1.input 3);
+
+\draw ([xshift=-9mm]i3.east) -- ++(right:14mm) |- (a2.input 1);
+\draw ([xshift=-3mm]i4.east) -- ++(right:2mm) |- (a2.input 2);
+\draw ([xshift=3mm]i5.east) -- ++(right:2mm) |- (a2.input 3);
+
+\draw ([xshift=-9mm]i6.east) -- ++(right:14mm) |- (a3.input 1);
+\draw ([xshift=-3mm]i7.east) -- ++(right:2mm) |- (a3.input 2);
+\draw ([xshift=3mm]i8.east) -- ++(right:2mm) |- (a3.input 3);
+
+\draw ([xshift=-9mm]i9.east) -- ++(right:14mm) |- (a4.input 1);
+\draw ([xshift=-3mm]i10.east) -- ++(right:2mm) |- (a4.input 2);
+\draw ([xshift=3mm]i11.east) -- ++(right:2mm) |- (a4.input 3);
+
+\draw (a1.output) -- ++(right:4mm) |- (o.input 1);
+\draw (a2.output) -- ++(right:2mm) |- (o.input 2);
+\draw (a3.output) -- ++(right:2mm) |- (o.input 3);
+\draw (a4.output) -- ++(right:4mm) |- (o.input 4);
+
+\draw ([xshift=3mm, yshift=5mm]i0.east) node[anchor=south] {$C$} -- ([xshift=3mm, yshift=-5mm]i11.east);
+\draw ([xshift=-3mm, yshift=5mm]i0.east) node[anchor=south] {$B$} -- ([xshift=-3mm, yshift=-5mm]i11.east);
+\draw ([xshift=-9mm, yshift=5mm]i0.east) node[anchor=south] {$A$} -- ([xshift=-9mm, yshift=-5mm]i11.east);
+
+\draw (o.output) -- ([xshift=5mm]o.east) node[anchor=west] {$Q$};
+
+\end{tikzpicture}
+\caption{Alarmmelder}
+\end{figure}
+\newpage
+Nach Aufbauen der Schaltung auf dem Steckbrett wurden alle möglichen Eingangssignale angelegt und die Ausgabe notiert. Daraus ist die folgende Funktionstabelle entstanden.
+\begin{center}
+\begin{tabular}{c | c | c | c}
+$A$ & $B$ & $C$ & $Q$ \\ \hline
+0 & 0 & 0 & 0 \\ \hline
+0 & 0 & 1 & 0 \\ \hline
+0 & 1 & 0 & 0 \\ \hline
+0 & 1 & 1 & 1 \\ \hline
+1 & 0 & 0 & 1 \\ \hline
+1 & 0 & 1 & 1 \\ \hline
+1 & 1 & 0 & 0 \\ \hline
+1 & 1 & 1 & 1 \\ \hline
+\end{tabular}
+\end{center}
+
+\section{Lampensteuerung}
+Eine Lampe hat drei Einschalter, soll aber nur leuchten, wennn jeweils zwei Schalter gleichzeitig betätigt werden. Bei drei Eingängen und einem Ausgang ergibt sich die folgende Funktionstabelle.
+\begin{center}
+\begin{tabular}{c | c | c | c}
+$A$ & $B$ & $C$ & $Q$ \\ \hline
+0 & 0 & 0 & 0 \\ \hline
+0 & 0 & 1 & 0 \\ \hline
+0 & 1 & 0 & 0 \\ \hline
+0 & 1 & 1 & 1 \\ \hline
+1 & 0 & 0 & 0 \\ \hline
+1 & 0 & 1 & 1 \\ \hline
+1 & 1 & 0 & 1 \\ \hline
+1 & 1 & 1 & 0 \\ \hline
+\end{tabular}
+\end{center}
+Aus der Funktionstabelle lassen sich die Einträge, bei denen $Q=1$ ist herausfiltern und in eine Funktionsgleichung übersetzen.
+\[Q=(\overline{A} \land B \land C ) \lor (A \land \overline{B} \land C) \lor (A \land B \land \overline{C})\]
+Die Funktionsgleichung lässt sich analog zum Alarmmelder in einen Funktionsplan übersetzen.
+\begin{figure}
+\centering
+\begin{tikzpicture}[circuit logic IEC, circuit ee IEC]
+\matrix[column sep=7mm]
+{
+\node (i0) {};	& 										& \\
+\node (i1) {};	& \node [and gate,inputs={inn}](a1){};	& \\
+\node (i2) {};	& 										& \\
+\node (i3) {};	& 										& \\
+\node (i4) {};	& \node [and gate,inputs={nin}](a2){}; 	& \node [or gate,inputs={n,n,n}] (o) {};\\
+\node (i5) {};	& 										& \\
+\node (i6) {};	& 										& \\
+\node (i7) {};	& \node [and gate,inputs={nni}](a3){};	& \\
+\node (i8) {};	& 										& \\
+};
+
+\node [contact] at ([xshift=-9mm]i0.east) {};
+\node [contact] at ([xshift=-9mm]i3.east) {};
+\node [contact] at ([xshift=-9mm]i6.east) {};
+\node [contact] at ([xshift=-9mm]i6.east) {};
+
+\node [contact] at ([xshift=-3mm]i1.east) {};
+\node [contact] at ([xshift=-3mm]i4.east) {};
+\node [contact] at ([xshift=-3mm]i7.east) {};
+
+\node [contact] at ([xshift=3mm]i2.east) {};
+\node [contact] at ([xshift=3mm]i5.east) {};
+\node [contact] at ([xshift=3mm]i8.east) {};
+
+\draw ([xshift=-9mm]i0.east) -- ++(right:14mm) |- (a1.input 1);
+\draw ([xshift=-3mm]i1.east) -- ++(right:2mm) |- (a1.input 2);
+\draw ([xshift=3mm]i2.east) -- ++(right:2mm) |- (a1.input 3);
+
+\draw ([xshift=-9mm]i3.east) -- ++(right:14mm) |- (a2.input 1);
+\draw ([xshift=-3mm]i4.east) -- ++(right:2mm) |- (a2.input 2);
+\draw ([xshift=3mm]i5.east) -- ++(right:2mm) |- (a2.input 3);
+
+\draw ([xshift=-9mm]i6.east) -- ++(right:14mm) |- (a3.input 1);
+\draw ([xshift=-3mm]i7.east) -- ++(right:2mm) |- (a3.input 2);
+\draw ([xshift=3mm]i8.east) -- ++(right:2mm) |- (a3.input 3);
+
+\draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+\draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+\draw (a3.output) -- ++(right:3mm) |- (o.input 3);
+
+\draw ([xshift=3mm, yshift=5mm]i0.east) node[anchor=south] {$C$} -- ([xshift=3mm, yshift=-5mm]i8.east);
+\draw ([xshift=-3mm, yshift=5mm]i0.east) node[anchor=south] {$B$} -- ([xshift=-3mm, yshift=-5mm]i8.east);
+\draw ([xshift=-9mm, yshift=5mm]i0.east) node[anchor=south] {$A$} -- ([xshift=-9mm, yshift=-5mm]i8.east);
+
+\draw (o.output) -- ([xshift=5mm]o.east) node[anchor=west] {$Q$};
+
+\end{tikzpicture}
+\caption{Lampensteuerung}
+\end{figure}
+
+\section{Überprüfung und Aufbau einer Schaltung}
+Die vorgegebene Schaltung aus Abbildung 7 wurde auf dem Steckbrett nachgestellt und auf ihre Abhängigkeiten untersucht.
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[circuit logic IEC, circuit ee IEC]
+\matrix[column sep=7mm]
+{
+\node (i0) {};	& 										& \\
+\node (i1) {};	& \node [and gate,inputs={nn}](a1){$Z_1$};	& \\
+\node (i2) {};	& 										& \\
+\node (i3) {};	& 										& \\
+\node (i4) {};	& \node [or gate,inputs={nn}](a2){$Z_2$}; 	& \node [and gate,inputs={n,n,n}] (o) {};\\
+\node (i5) {};	& 										& \\
+\node (i6) {};	& 										& \\
+\node (i7) {};	& \node [nor gate,inputs={ni}](a3){$Z_3$};	& \\
+\node (i8) {};	& 										& \\
+};
+
+\node [contact] at ([xshift=-9mm]i0.east) {};
+\node [contact] at ([xshift=-3mm]i1.east) {};
+%
+
+%
+\node [contact] at ([xshift=-3mm]i4.east) {};
+\node [contact] at ([xshift=3mm]i5.east) {};
+
+\node [contact] at ([xshift=-9mm]i6.east) {};
+%
+\node [contact] at ([xshift=3mm]i8.east) {};
+
+\draw ([xshift=-9mm]i0.east) -- ++(right:14mm) |- (a1.input 1);
+\draw ([xshift=-3mm]i1.east) -- ++(right:2mm) |- (a1.input 2);
+%
+
+%
+\draw ([xshift=-3mm]i4.east) -- ++(right:2mm) |- (a2.input 1);
+\draw ([xshift=3mm]i5.east) -- ++(right:2mm) |- (a2.input 2);
+
+\draw ([xshift=-9mm]i6.east) -- ++(right:14mm) |- (a3.input 1);
+%
+\draw ([xshift=3mm]i8.east) -- ++(right:2mm) |- (a3.input 2);
+
+\draw (a1.output) -- ++(right:3mm) |- (o.input 1);
+\draw (a2.output) -- ++(right:3mm) |- (o.input 2);
+\draw (a3.output) -- ++(right:3mm) |- (o.input 3);
+
+\draw ([xshift=3mm, yshift=5mm]i0.east) node[anchor=south] {$S_1$} -- ([xshift=3mm, yshift=-5mm]i8.east);
+\draw ([xshift=-3mm, yshift=5mm]i0.east) node[anchor=south] {$S_2$} -- ([xshift=-3mm, yshift=-5mm]i8.east);
+\draw ([xshift=-9mm, yshift=5mm]i0.east) node[anchor=south] {$S_3$} -- ([xshift=-9mm, yshift=-5mm]i8.east);
+
+\draw (o.output) -- ([xshift=5mm]o.east) node[anchor=west] {$Q$};
+
+\end{tikzpicture}
+\caption{Schaltung}
+\end{figure}
+Aufbau und Auswertung aller möglicher Eingangssignalkombinationen ergeben eine Funktionstabelle, die in eine Funktionsgleichung übersetzt werden kann.
+\begin{center}
+\begin{tabular}{c | c | c || c | c | c || c}
+$S_1$ & $S_2$ & $S_3$ & $Z_1$  & $Z_2$ & $Z_3$ & $Q$\\ \hline
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+0 & 0 & 1 & 0 & 1 & 0 & 0 \\ \hline
+0 & 1 & 0 & 0 & 1 & 0 & 0 \\ \hline
+0 & 1 & 1 & 0 & 1 & 0 & 0 \\ \hline
+1 & 0 & 0 & 0 & 0 & 1 & 0 \\ \hline
+1 & 0 & 1 & 0 & 0 & 0 & 0 \\ \hline
+1 & 1 & 0 & 1 & 1 & 1 & 1 \\ \hline
+1 & 1 & 1 & 1 & 1 & 0 & 0 \\ \hline
+\end{tabular}
+\end{center}
+\begin{align}
+Q &= Z_1 \land Z_2 \land Z_3 \land \nonumber \\ 
+  &= (S_1 \land S_2) \land (S_2 \lor S_3) \land \overline{(\overline{S_1} \land S_3}) \nonumber \\ 
+  &= S_1 \land S_2 \land \overline{S_3} \nonumber
+\end{align}
 
 %%%
 %%% end main document
