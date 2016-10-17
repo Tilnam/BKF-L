@@ -258,16 +258,16 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 
 %%% uncomment following lines, if you want to:
 %%% reuse the maketitle-entries for hyperref-setup
-\newcommand\org@maketitle{}
-\let\org@maketitle\maketitle
-\def\maketitle{%
-  \hypersetup{
-    pdftitle={\@title},
-    pdfauthor={\@author}
-    pdfsubject={\@subject}
-  }%
-  \org@maketitle
-}
+%\newcommand\org@maketitle{}
+%\let\org@maketitle\maketitle
+%\def\maketitle{%
+%  \hypersetup{
+%    pdftitle={\@title},
+%    pdfauthor={\@author}
+%    pdfsubject={\@subject}
+%  }%
+%  \org@maketitle
+%}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -339,42 +339,71 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 %%% structure: \section \subsection \subsubsection \paragraph \subparagraph
 %%%
 \section{Kundenauftrag}
-Die verschiedenen Logischen Grundbausteine UND, ODER, NICHT, NAND und NOR sollen auf ihre Funktionsweise untersucht werden.
+Im Foyer eines IT-Dienstleisters soll ein Hausnetzwerk (CAT5) mit einem Patchfeld und zwei Datendosen (UAE 8/8) ausgestellt werden.  
+Es wird ein Ausstellungsstück mit Patchpanel, Brüstungskanal und zwei Doppeldatendosen hergestellt. 
+Die Planung und Dokumentation wird in diesem Dokument abgelegt.
+Als Demonstration wird mithilfe der Verkabelung ein P2P-Netzwerk mit Laufwerksfreigabe eingerichtet.
 
 \section{Materialien und Werkzeuge}
+\subsection{Werkzeuge}
+\begin{itemize}
+	* Seitenschneider klein und groß \\
+	* Schraubendreher Plus-Minus \\
+	* Schlitzschraubendreher \\
+	* Abisolierer \\
+	* Anlegewerkzeug LSA-Plus \\ 
+\end{itemize}
+
+\subsection{Materialien}
+\subsubsection{Patchfeld}
+Modell Patchfeld: BTR E-DAT 6x8 CAT6 \\
+Das im Ausstellungsstück verwendete Patchfeld ist ein 6 Port-Aufputz Verteiler und Anschlussdose für die strukturierte Gebäudeverkabelung, hergestellt von BTR, verwendet. 
+Das Patchfeld ist CAT.6 Klassifizuert und damit für 10GBit Ethernet und HDBaseT geeignet. 
+Es zeichnet sich durch besonders einfache Auflegemöglichkeit aus, da die Adernpaare ohne Aufdrehen der Verseilung bis zur LSA-Klemme geführt werden können.
+Die Klemmen sind mit der passenden Adernfarbe nach TIA/EIA 568A gekennzeichnet und beschriftet. 
+
+\subsubsection{Datendose}
+TODO: Modell Dose rausfinden \\
+
+\subsubsection{Verlegekabel}
+ELTROPA net-works 1000 Cat.7 1000MHz 4x2xAWG23 HF3
+
+
 
 \section{Zeitplanung}
-Um die Schaltfunktion der einzelnen Bausteine überprüfen und die Wahrheitstabellen ausfüllen zu können lassen sich eine vielzahl einfacher Schaltungen aufbauen.
-Die Schalteräquivalente stellen diese Schaltungen dar. Etwas spannender ist es das Exklusiv Oder aus einzelnen Invertieren, AND-Gattern und einem OR-Gatter aufzubauen.
-\begin{center}
-\begin{tikzpicture}[circuit logic IEC]
-\matrix[column sep=7mm]
-{
-\node (i0) {};	& 							& 							& 							& \\
-				& 							& 							& 							& \\
-\node (i1) {};	& \node [not gate](n1){};	& \node [and gate] (a1) {}; & 							& \\
-				& 							&							& \node [or gate] (b) {}; 	& \node (o) {Q};\\
-\node (i2) {};	& \node [not gate](n2){}; 	& \node [and gate] (a2) {};	& 							&\\
-				& 							&							& 							&\\
-\node (i3) {};	& 							&							& 							&\\
-};
-\draw (i0.east) -- ++(right:17mm) |- (a1.input 1);
-\draw (i1.east) -- ++(right:3mm) |- (n1.input);
-\draw (n1.output) -- ++(right:3mm) |- (a1.input 2);
-\draw (i2.east) -- ++(right:3mm) |- (n2.input);
-\draw (n2.output) -- ++(right:3mm) |- (a2.input 1);
-\draw (i3.east) -- ++(right:17mm) |- (a2.input 2);
+\subsection{Ursprüngliche Planung}
+\begin{tabular}{ r | l }
+	\hline 
+	Zeit &	Aufgabe \\ \hline
+	2.0h &	Recherche zu Materialien und Werkzeugen \\
+	0.5h &	Aufstellen der Zeitplanung des Projekts \\
+	1.0h &	Erstellen des Verdrahtungs- und Aufbauplan \\
+	2.5h &	Aufbau der Verkabelung und überprüfung \\
+	1.0h &	Einrichten der Dateifreigabe \\
+	4.0h &	Dokumentation und Erstellung der Präsentation \\
+	0.5h & 	Präsentation \\
+	\hline
+\end{tabular}
 
-\draw (a1.output) -- ++(right:3mm) |- (b.input 1);
-\draw (a2.output) -- ++(right:3mm) |- (b.input 2);
 
-\draw (b.output) -- ++(right:3mm) |- (o.east);
+\subsection{Tatsächliche Arbeitszeit TODO}
+\begin{tabular}{ r | l }
+	\hline 
+	Zeit &	Aufgabe \\ \hline
+	2.0h &	Recherche zu Materialien und Werkzeugen \\
+	0.5h &	Aufstellen der Zeitplanung des Projekts \\
+	1.0h &	Erstellen des Verdrahtungs- und Aufbauplan \\
+	2.5h &	Aufbau der Verkabelung und überprüfung 17.10.2016 9:30 fertig\\
+	1.0h &	Einrichten der Dateifreigabe \\
+	4.0h &	Dokumentation und Erstellung der Präsentation \\
+	0.5h & 	Präsentation \\
+	\hline
+\end{tabular}
 
-\end{tikzpicture}
-\end{center}
 
-\section{Bausteine mit mehreren Eingängen}
+\section{Aufbau- und Verdrahtungsplan}
 
+\section{Einrichten eines P2P Netzweks mit Laufwerksfreigabe}
 
 %%%
 %%% end main document

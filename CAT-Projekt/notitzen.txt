@@ -1,0 +1,4 @@
+EIA/TIA 568
+Permamentlinklength
+Leitungsaufdruck
+Mindestbiegeradius5
