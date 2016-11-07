@@ -55,7 +55,9 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 \usepackage{psfrag}
 
 %%% listings: include programming code
-%\usepackage{listings}
+\usepackage{listings}
+\usepackage{courier}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
 
 %%% units: technical units
 \usepackage{units}
@@ -344,6 +346,7 @@ Es wird ein Ausstellungsstück mit Patchpanel, Brüstungskanal und zwei Doppelda
 Die Planung und Dokumentation wird in diesem Dokument abgelegt.
 Als Demonstration wird mithilfe der Verkabelung ein P2P-Netzwerk mit Laufwerksfreigabe eingerichtet.
 
+
 \section{Materialien und Werkzeuge}
 \subsection{Werkzeuge}
 \begin{itemize}
@@ -358,16 +361,37 @@ Als Demonstration wird mithilfe der Verkabelung ein P2P-Netzwerk mit Laufwerksfr
 \subsubsection{Patchfeld}
 Modell Patchfeld: BTR E-DAT 6x8 CAT6 \\
 Das im Ausstellungsstück verwendete Patchfeld ist ein 6 Port-Aufputz Verteiler und Anschlussdose für die strukturierte Gebäudeverkabelung, hergestellt von BTR, verwendet. 
-Das Patchfeld ist CAT.6 Klassifizuert und damit für 10GBit Ethernet und HDBaseT geeignet. 
+Das Patchfeld ist CAT.6 Klassifiziert und damit für 10GBit Ethernet und HDBaseT geeignet. 
 Es zeichnet sich durch besonders einfache Auflegemöglichkeit aus, da die Adernpaare ohne Aufdrehen der Verseilung bis zur LSA-Klemme geführt werden können.
 Die Klemmen sind mit der passenden Adernfarbe nach TIA/EIA 568A gekennzeichnet und beschriftet. 
+
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=0.7\textwidth]{patchfeld.jpg}
+	\caption{Zwei aufgelegte Verlegekabel am Patchfeld}
+	\label{fig:Kabel1}
+\end{figure}
 
 \subsubsection{Datendose}
 TODO: Modell Dose rausfinden \\
 
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=0.7\textwidth]{anschlussdose.jpg}
+	\caption{Aufgelegte Datendose}
+	\label{fig:Dose1}
+\end{figure}
+
 \subsubsection{Verlegekabel}
 ELTROPA net-works 1000 Cat.7 1000MHz 4x2xAWG23 HF3
 
+Text tippen
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=0.7\textwidth]{verlegekabel.jpg}
+	\caption{Verlegekabel in einzelne Komponenten zerlegt}
+	\label{fig:Kabel1}
+\end{figure}
 
 
 \section{Zeitplanung}
@@ -393,17 +417,64 @@ ELTROPA net-works 1000 Cat.7 1000MHz 4x2xAWG23 HF3
 	2.0h &	Recherche zu Materialien und Werkzeugen \\
 	0.5h &	Aufstellen der Zeitplanung des Projekts \\
 	1.0h &	Erstellen des Verdrahtungs- und Aufbauplan \\
-	2.5h &	Aufbau der Verkabelung und überprüfung 17.10.2016 9:30 fertig\\
+	6.0h &	Aufbau der Verkabelung und Überprüfung \\
 	1.0h &	Einrichten der Dateifreigabe \\
 	4.0h &	Dokumentation und Erstellung der Präsentation \\
 	0.5h & 	Präsentation \\
 	\hline
 \end{tabular}
 
+\section{Kostenkalkulation}
+blub Einkauf, Verkauf, Handelskalkulation …
 
 \section{Aufbau- und Verdrahtungsplan}
+Das aufgebaute Ausstellungsstück stellt einen Teil der Tertiärverkabelung dar, wenn man die strukturierte Verkabelung nach der Europäischen Norm EN 50173-1 für Anwendungsneutrale Kommunikationskabelanlagen, oder die nordamerikanische Norm TIA/EIA 568 zugrunde legt.
+Die Tertiärverkabelung umfasst die horizontale Verkabelung innerhalb eines Stockwerks und wird meistens mit Twisted-Pair-Kabeln ausgeführt.
+Da die maximale Länge von 100 Metern bei Fast- und Gigabit-Ethernet nicht überschritten werden darf werden als festes Verlegekabel in der Wand maximal 90m Installationskabel als Permanent-Link verlegt. 
+Die übrigen 10m stehen so noch für lose Verkabelung mit Patchkabeln im Switchschrank und von der Anschlussdose bis zum Computer des Nutzers zur Verfügung.
+Das Ausstellungsstück enthält alle Komponenten einer Tertiärverkabelung in verkleinerter Form.
+Das Patchfeld würde in einer realen Installation an zentraler Stelle im Haus im Verteilerschrank installiert. 
+Verteilerschränke, Patchpanels und weitere darin untergebrachte Geräte wie Switche und Router sind in den meisten Installationen in 19-Zoll-Systemtechnik ausgeführt.
+Im eigentlichen Büro werden dann die Endgeräte mit Patchkabeln zu den Anschlussdosen, im Ausstellungsstück im Brüstungskanal montiert, verbunden. 
+
+TODO Grafik.
 
 \section{Einrichten eines P2P Netzweks mit Laufwerksfreigabe}
+Zur Laufwerksfreigabe in Linux Netzwerken wird gerne das Network File System (NFS) verwendet. 
+Als freigebenden Host verwenden wir einen Raspberry Pi 3. 
+Auf diesem läuft ein Raspian Jessie mit installiertem nfs-kernel-server. 
+Das Paket kann zusammen mit allen benötigten Hilfsprogrammen aus den offiziellen Paketquellen installiert werden.
+\begin{lstlisting}[frame=single]
+	# apt-get install nfs-kernel-server portmap nfs-common
+\end{lstlisting}
+
+Alle Clients, die auf die freigegebenen Laufwerke zugreifen können sollen brauchen das Paket nfs-common.
+\begin{lstlisting}[frame=single]
+	# apt-get install nfs-common
+\end{lstlisting}
+
+In der Konfigurationsdatei /etc/exports werden die Laufwerksfreigaben festgelegt. 
+In unserem Fall soll das Verzeichnis /data für alle Computer im lokalen Netzwerk 100.122.3.0/24 freigegeben werden. 
+Alle sollen lesen und schreiben können.
+\begin{lstlisting}[frame=single]
+	/data 100.122.3.0/24(rw,async)
+\end{lstlisting}
+
+Nach einem Neustart des NFS Servers können die aktiven Laufwerksfreigaben von jedem Rechner im selben Netz eingesehen und eingebunden werden.
+\begin{lstlisting}[frame=single]
+	pi@rpi3:~ $ sudo systemctl restart nfs-kernel-server.service
+	pi@rpi3:~ $ showmount -e localhost
+	Export list for localhost:
+	/data 100.122.3.0/24
+\end{lstlisting}
+
+Mit dem mount-Befehl kann das Laufwerk nun in das lokale Dateisystem eines anderen Rechners im Netzwerk eingebunden werden.
+\begin{lstlisting}[frame=single]
+	# mount 100.122.3.113:/data data/
+\end{lstlisting}
+Das Verzeichnis data/ verhält sich nun wie ein lokales Verzeichnis, liegt in Wirklichkeit aber auf dem Raspberry Pi. 
+Änderungen an Dateien werden über das Netzwerk direkt auf dem Raspberry Pi durchgeführt. 
+Alle Rechner, die das Laufwerk eingebunden haben sehen sofort alle Änderungen und können auf die Dateien zugreifen.
 
 %%%
 %%% end main document
