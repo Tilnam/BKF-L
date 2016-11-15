@@ -331,7 +331,7 @@ a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper,
 % \listoftables
 
 %%% display the main document on a new page 
-% \newpage
+\newpage
 
 % \pagenumbering{arabic} %% normal page numbers (include it, if roman was used above)
 
@@ -349,13 +349,55 @@ Als Demonstration wird mithilfe der Verkabelung ein P2P-Netzwerk mit Laufwerksfr
 
 \section{Materialien und Werkzeuge}
 \subsection{Werkzeuge}
+Um die arbeiten an Leitungen, Anschlussdosen und Patchfeldern möglichst effizient zu gestalten empfiehlt es sich die passenden, teilweise spezialisierten Werkzeuge zu verwenden.
 \begin{itemize}
 	* Seitenschneider klein und groß \\
 	* Schraubendreher Plus-Minus \\
 	* Schlitzschraubendreher \\
 	* Abisolierer \\
-	* Anlegewerkzeug LSA-Plus \\ 
+	* Anlegewerkzeug LSA-Plus \\
+	* TDR Messgerät
 \end{itemize}
+Schraubendreher, Seitenschneider und Abisolierzange sollten allgemein bekannt sein. 
+Das Anlegewerkzeug LSA-Plus und das TDR Messgerät sind spezialisierte Werkzeuge die hauptsächlich in der Netzwerktechnik eingesetzt werden.
+
+\subsubsection{Anlegewerkzeug LSA-Plus}
+Die Abkürzung LSA steht für Löt-, Schraub- und Abisolierfrei und bezeichnet eine im Jahr 1980 zum Patent angemeldetes Verfahren zum Kontaktieren von Leitungen in der Fernmeldetechnik.
+Wie später noch bei der Dose und beim Patchfeld genauer beschrieben können nach diesem Verfahren die einzelnen Adern des Verlegekabels schnell und einfach verbunden, auch aufgelegt oder Angelegt werden.
+
+\begin{figure}[htbp] 
+	\centering
+	\includegraphics[width=0.7\textwidth]{lsa-werkzeug.jpeg}
+	\caption{LSA-Werkzeug von Krone}
+	\label{fig:LSA1}
+\end{figure}
+
+Das Ganze geschieht mithilfe des Anlegewerkzeugs, das mehrere Funktionen in sich vereint.
+Die Spitze, im Bild links unten, dient dazu die Ader zwischen die Schneidklemmen einzuführen.
+Mit dem etwas breiteren Kunststoffblock unten wird die Ader zentriert, das schlankere Teil darüber ist schmal genug um zwischen die schneidkemmen zu gleiten.
+Sobald durch den Anwender genügend Kraft aufgewendet und die Ader ganz zwischen die Schneidklemmen gedrückt wurde, löst die Schere, im Bild oben auf, aus und kürzt die Ader auf die passende Länge.
+Sollte eine Ader in der falschen Klemme gelandet sein, kann sie mithilfe des Hakens, im Bild rechts, wieder aus der Klemme gezogen werden. 
+
+
+\subsubsection{TDR-Messgerät}
+Ein Time-Domain-Reflectometer, abgekürzt TDR ist ein Messgerät, das Reflexionscharakteristika von elektromagnetischen Wellen und Signalen in Kabeln misst. 
+Diese Messgeräte finden als Abnahmekontrolle in neuverkabelten Gebäuden eine große Rolle.
+
+Das Messgerät besteht aus zwei wesentlichen Bauteilen. 
+Zum einen das  Handgerät, in dem die Auswerteelektronik, Display und Stromquelle untergebracht sind und zum anderen eine abgesetzte Einheit zum Abschluss des durchzumessenden Kabeles.
+Die abgesetzte Einheit simuliert durch ihre elektrischen Eigenschaften die Netzwerkschnittstelle eines Switches oder Rechners.
+Das Handgerät sendet eine Folge von sehr kurzen Spannungspulsen in die Einzeladern des zu testenden Kabels.
+Die Spannungspulse sind dabei so weit auseinander, dass die Echos aller früheren Impulse abgeklungen sind. 
+Aber gerade die Echos der Impulse, die auf der Leitung hin und herwandern sind für die Fehlersuche interessant.
+An kurzgeschlossenen Kabelenden zum Beispiel kehrt sich die Polarisierung des Impulses an der Fehlerstelle um. 
+Quetschungen oder andere Verletzungen des Kabels können zur Teilreflexion des Impulses führen. 
+Die Laufzeit des Impulses bis zur Fehlerstelle oder bis zur abgesetzten Abschlusseinheit gibt Auskunft über die Leitungslänge. 
+So lässt sich schnell die Fehlerstelle in dem verlegten Kabel lokalisieren und reparieren.
+Neben der Impulsantwort überprüft das Messgerät noch den durchgang aller acht Adern sowie des Schirms und deckt dabei eventuell nicht verbundene Adern oder Kurzschlüsse zur Schirmung auf.
+
+Anhand aller gesammelter Messergebnisse kann der Verbund aus Patchfeld, Leitung und Anschlussdose vom Gerät automatisch in eine der Kategorien CAT 5 bis CAT 7 einsortiert werden.
+
+
 
 \subsection{Materialien}
 \subsubsection{Patchfeld}
@@ -363,7 +405,14 @@ Modell Patchfeld: BTR E-DAT 6x8 CAT6 \\
 Das im Ausstellungsstück verwendete Patchfeld ist ein 6 Port-Aufputz Verteiler und Anschlussdose für die strukturierte Gebäudeverkabelung, hergestellt von BTR, verwendet. 
 Das Patchfeld ist CAT.6 Klassifiziert und damit für 10GBit Ethernet und HDBaseT geeignet. 
 Es zeichnet sich durch besonders einfache Auflegemöglichkeit aus, da die Adernpaare ohne Aufdrehen der Verseilung bis zur LSA-Klemme geführt werden können.
-Die Klemmen sind mit der passenden Adernfarbe nach TIA/EIA 568A gekennzeichnet und beschriftet. 
+
+Die LSA Klemme besteht aus einem z-förmig ausgebildeten Anschlusselement aus Metall.
+Die geraden Teile des Z, im verwendeten Patchfeld unter weißem Kunststoff versteckt, dienen als Klemmrippen und halten die Schneidklemmen von Aderbewegungen frei.
+Der eigentliche Kontaktierungsteil der Klemme steht ca im $45^{\circ}$-Winkel zur Aderachse.
+Die scharfen Kanten in der metallenen Schneidklemmen schneiden durch die Isolierung der Ader und es entsteht eine elektrisch leitfähige Verbindung.
+Diese Verbindung ist kaltverschweißt und gasdicht, sodass keine Korrosion auftreten kann und eine Dauerhafte Verbindung bestehen bleibt.
+
+Die Klemmen sind mit der Adernfarbe nach TIA/EIA 568A gekennzeichnet und beschriftet, sodass ohne Nachschlagen der Belegung im Datenblatt direkt aufgelegt werden kann.
 
 \begin{figure}[htbp] 
 	\centering
@@ -418,7 +467,7 @@ Text tippen
 	0.5h &	Aufstellen der Zeitplanung des Projekts \\
 	1.0h &	Erstellen des Verdrahtungs- und Aufbauplan \\
 	6.0h &	Aufbau der Verkabelung und Überprüfung \\
-	1.0h &	Einrichten der Dateifreigabe \\
+	1.5h &	Einrichten der Dateifreigabe \\
 	4.0h &	Dokumentation und Erstellung der Präsentation \\
 	0.5h & 	Präsentation \\
 	\hline
